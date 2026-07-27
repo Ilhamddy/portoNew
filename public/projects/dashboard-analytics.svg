@@ -1,14 +1,165 @@
-<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="800" fill="#0d1516"/>
-  <rect x="72" y="72" width="1056" height="656" fill="#eff5f5" opacity=".08"/>
-  <rect x="120" y="128" width="260" height="544" fill="#60999f" opacity=".18"/>
-  <rect x="420" y="128" width="660" height="160" fill="#60999f" opacity=".28"/>
-  <rect x="420" y="328" width="300" height="344" fill="#eff5f5" opacity=".12"/>
-  <rect x="760" y="328" width="320" height="344" fill="#eff5f5" opacity=".12"/>
-  <path d="M460 604L540 510L620 548L700 420L780 456L860 376L1036 480" stroke="#80adb3" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="220" cy="196" r="40" fill="#80adb3"/>
-  <rect x="180" y="292" width="152" height="18" fill="#eff5f5" opacity=".45"/>
-  <rect x="180" y="340" width="124" height="18" fill="#eff5f5" opacity=".25"/>
-  <rect x="180" y="388" width="172" height="18" fill="#eff5f5" opacity=".25"/>
-  <text x="120" y="720" fill="#eff5f5" font-family="Arial, sans-serif" font-size="40" font-weight="700">Dashboard Analytics</text>
+<svg width="1400" height="820" viewBox="0 0 1400 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="820" fill="#EEF3F8"/>
+
+  <g filter="url(#softShadow)">
+    <rect x="12" y="26" width="188" height="32" rx="12" fill="#0C91B6"/>
+    <text x="42" y="47" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="13" font-weight="700">Menara BTS Telekomunikasi</text>
+    <circle cx="28" cy="42" r="7" fill="#FFFFFF" fill-opacity="0.14"/>
+    <path d="M26 42C26 39.8 27.8 38 30 38M26 42C26 44.2 27.8 46 30 46" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="210" y="26" width="198" height="32" rx="12" fill="#FFFFFF"/>
+    <text x="250" y="47" fill="#5B6475" font-family="Arial, sans-serif" font-size="13" font-weight="700">Jaringan Internet &amp; Fiber Optic</text>
+    <path d="M224 39C230 35 236 35 242 39M227 42C231 40 235 40 239 42M231 45H235" stroke="#6A7485" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="420" y="26" width="174" height="32" rx="12" fill="#FFFFFF"/>
+    <text x="462" y="47" fill="#5B6475" font-family="Arial, sans-serif" font-size="13" font-weight="700">Portal Website OPD &amp; Desa</text>
+    <circle cx="440" cy="42" r="7" stroke="#5B6475" stroke-width="1.4"/>
+    <path d="M433 42H447M440 35C442 39 442 45 440 49M440 35C438 39 438 45 440 49" stroke="#5B6475" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="608" y="26" width="224" height="32" rx="12" fill="#FFFFFF"/>
+    <text x="650" y="47" fill="#5B6475" font-family="Arial, sans-serif" font-size="13" font-weight="700">Looker Studio Embed (Direct View)</text>
+    <rect x="625" y="38" width="13" height="9" rx="1.5" stroke="#5B6475" stroke-width="1.4"/>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="12" y="88" width="322" height="140" rx="14" fill="url(#greenCard)"/>
+    <text x="28" y="114" fill="#B5F5F1" font-family="Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1.2">MENARA BTS PPU</text>
+    <text x="28" y="146" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="31" font-weight="900">148</text>
+    <text x="28" y="166" fill="#B5F5F1" font-family="Arial, sans-serif" font-size="12" font-weight="600">Menara Telekomunikasi Terdaftar</text>
+    <line x1="28" y1="184" x2="318" y2="184" stroke="#FFFFFF" stroke-opacity=".12"/>
+    <text x="28" y="207" fill="#4EE8B9" font-family="Arial, sans-serif" font-size="12" font-weight="800">Aktif: 139</text>
+    <text x="278" y="207" fill="#F5C84B" font-family="Arial, sans-serif" font-size="12" font-weight="800">Maint: 6</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="350" y="88" width="320" height="140" rx="14" fill="#FFFFFF"/>
+    <text x="365" y="116" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12" font-weight="800">Bandwidth Internet</text>
+    <text x="365" y="147" fill="#080F25" font-family="Arial, sans-serif" font-size="31" font-weight="900">2.5 Gbps</text>
+    <text x="365" y="167" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12" font-weight="600">Kapasitas Internet Terpasang PPU</text>
+    <line x1="365" y1="184" x2="650" y2="184" stroke="#EFF2F6"/>
+    <text x="365" y="207" fill="#2A3346" font-family="Arial, sans-serif" font-size="12" font-weight="800">Titik Koneksi:</text>
+    <text x="585" y="207" fill="#078E93" font-family="Arial, sans-serif" font-size="12" font-weight="800">186 Lokasi</text>
+    <path d="M638 111C643 108 648 108 653 111M641 115C644 113 647 113 650 115M644 119H647" stroke="#19A7B7" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="686" y="88" width="320" height="140" rx="14" fill="#FFFFFF"/>
+    <text x="701" y="116" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12" font-weight="800">Website OPD &amp; Desa</text>
+    <text x="701" y="147" fill="#080F25" font-family="Arial, sans-serif" font-size="31" font-weight="900">74</text>
+    <text x="701" y="167" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12" font-weight="600">Domain .penajamkab.go.id &amp; .desa.id</text>
+    <line x1="701" y1="184" x2="986" y2="184" stroke="#EFF2F6"/>
+    <text x="701" y="207" fill="#2A3346" font-family="Arial, sans-serif" font-size="12" font-weight="800">Status SSL:</text>
+    <rect x="900" y="194" width="88" height="20" rx="10" fill="#E7FAEE"/>
+    <text x="909" y="208" fill="#1D9D5D" font-family="Arial, sans-serif" font-size="11" font-weight="900">100% Secured</text>
+    <circle cx="980" cy="111" r="7" stroke="#7B3FF2" stroke-width="1.5"/>
+    <path d="M973 111H987M980 104C982 108 982 114 980 118M980 104C978 108 978 114 980 118" stroke="#7B3FF2" stroke-width="1.2"/>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="1022" y="88" width="320" height="140" rx="14" fill="#FFFFFF"/>
+    <text x="1037" y="116" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12" font-weight="800">Jaringan Fiber Optic</text>
+    <text x="1037" y="147" fill="#080F25" font-family="Arial, sans-serif" font-size="31" font-weight="900">124 KM</text>
+    <text x="1037" y="167" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12" font-weight="600">Jaringan FO Dedicated Diskominfo</text>
+    <line x1="1037" y1="184" x2="1322" y2="184" stroke="#EFF2F6"/>
+    <text x="1037" y="207" fill="#2A3346" font-family="Arial, sans-serif" font-size="12" font-weight="800">OPD Terhubung:</text>
+    <rect x="1280" y="194" width="50" height="20" rx="10" fill="#E7FAEE"/>
+    <text x="1288" y="208" fill="#1D9D5D" font-family="Arial, sans-serif" font-size="11" font-weight="900">48 OPD</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="12" y="250" width="656" height="360" rx="14" fill="#FFFFFF"/>
+    <path d="M34 274V286M42 280V286M50 270V286" stroke="#5B45F1" stroke-width="2" stroke-linecap="round"/>
+    <text x="64" y="280" fill="#1F2637" font-family="Arial, sans-serif" font-size="14" font-weight="900">Grafik Kolom &amp; Garis Menara Per Kecamatan (PPU)</text>
+    <text x="34" y="298" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12">Jumlah menara BTS aktif dan titik blankspot per kecamatan</text>
+    <rect x="408" y="268" width="102" height="30" rx="10" fill="#FFFFFF" stroke="#E6EAF1"/>
+    <text x="432" y="288" fill="#5B45F1" font-family="Arial, sans-serif" font-size="12" font-weight="800">Grafik Kolom</text>
+    <text x="526" y="288" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12" font-weight="800">Grafik Garis (Line)</text>
+    <rect x="438" y="326" width="11" height="11" rx="2" fill="#4D3DF1"/>
+    <text x="456" y="336" fill="#4F596B" font-family="Arial, sans-serif" font-size="12" font-weight="700">Menara BTS Aktif</text>
+    <rect x="554" y="326" width="11" height="11" rx="2" fill="#10B9B0"/>
+    <text x="572" y="336" fill="#4F596B" font-family="Arial, sans-serif" font-size="12" font-weight="700">Titik Blankspot</text>
+    <g transform="translate(78 390)">
+      <rect x="0" y="42" width="30" height="148" rx="7" fill="url(#bar)"/>
+      <text x="7" y="32" fill="#4D3DF1" font-family="Arial, sans-serif" font-size="11" font-weight="900">58</text>
+      <rect x="38" y="184" width="30" height="6" rx="3" fill="#10B9B0"/>
+      <text x="48" y="174" fill="#10B9B0" font-family="Arial, sans-serif" font-size="11" font-weight="900">2</text>
+      <text x="12" y="218" fill="#5D6678" font-family="Arial, sans-serif" font-size="11" font-weight="700">Penajam</text>
+    </g>
+    <g transform="translate(228 418)">
+      <rect x="0" y="14" width="30" height="176" rx="7" fill="url(#bar)"/>
+      <text x="7" y="4" fill="#4D3DF1" font-family="Arial, sans-serif" font-size="11" font-weight="900">42</text>
+      <rect x="38" y="184" width="30" height="6" rx="3" fill="#10B9B0"/>
+      <text x="48" y="174" fill="#10B9B0" font-family="Arial, sans-serif" font-size="11" font-weight="900">1</text>
+      <text x="12" y="218" fill="#5D6678" font-family="Arial, sans-serif" font-size="11" font-weight="700">Sepaku</text>
+    </g>
+    <g transform="translate(380 446)">
+      <rect x="0" y="42" width="30" height="148" rx="7" fill="url(#bar)"/>
+      <text x="7" y="32" fill="#4D3DF1" font-family="Arial, sans-serif" font-size="11" font-weight="900">28</text>
+      <rect x="38" y="178" width="30" height="12" rx="6" fill="#10B9B0"/>
+      <text x="48" y="168" fill="#10B9B0" font-family="Arial, sans-serif" font-size="11" font-weight="900">3</text>
+      <text x="12" y="218" fill="#5D6678" font-family="Arial, sans-serif" font-size="11" font-weight="700">Babulu</text>
+    </g>
+    <g transform="translate(532 466)">
+      <rect x="0" y="42" width="30" height="148" rx="7" fill="url(#bar)"/>
+      <text x="7" y="32" fill="#4D3DF1" font-family="Arial, sans-serif" font-size="11" font-weight="900">20</text>
+      <rect x="38" y="184" width="30" height="6" rx="3" fill="#10B9B0"/>
+      <text x="48" y="174" fill="#10B9B0" font-family="Arial, sans-serif" font-size="11" font-weight="900">1</text>
+      <text x="12" y="218" fill="#5D6678" font-family="Arial, sans-serif" font-size="11" font-weight="700">Waru</text>
+    </g>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="688" y="250" width="656" height="360" rx="14" fill="#FFFFFF"/>
+    <path d="M710 274V286M718 280V286M726 270V286" stroke="#5B45F1" stroke-width="2" stroke-linecap="round"/>
+    <text x="740" y="280" fill="#1F2637" font-family="Arial, sans-serif" font-size="14" font-weight="900">Grafik Kolom &amp; Garis Menara Per Provider Seluler</text>
+    <text x="710" y="298" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12">Distribusi jumlah site BTS berdasarkan operator seluler</text>
+    <rect x="1084" y="268" width="102" height="30" rx="10" fill="#FFFFFF" stroke="#E6EAF1"/>
+    <text x="1108" y="288" fill="#5B45F1" font-family="Arial, sans-serif" font-size="12" font-weight="800">Grafik Kolom</text>
+    <text x="1202" y="288" fill="#8A94A6" font-family="Arial, sans-serif" font-size="12" font-weight="800">Grafik Garis (Line)</text>
+    <rect x="1222" y="326" width="11" height="11" rx="2" fill="#4D3DF1"/>
+    <text x="1240" y="336" fill="#4F596B" font-family="Arial, sans-serif" font-size="12" font-weight="700">Jumlah Site BTS</text>
+    <g transform="translate(774 390)">
+      <rect x="0" y="42" width="30" height="148" rx="7" fill="url(#bar)"/>
+      <text x="7" y="32" fill="#4D3DF1" font-family="Arial, sans-serif" font-size="11" font-weight="900">62</text>
+      <text x="-4" y="218" fill="#5D6678" font-family="Arial, sans-serif" font-size="11" font-weight="700">Telkomsel</text>
+    </g>
+    <g transform="translate(926 436)">
+      <rect x="0" y="42" width="30" height="148" rx="7" fill="url(#bar)"/>
+      <text x="7" y="32" fill="#4D3DF1" font-family="Arial, sans-serif" font-size="11" font-weight="900">38</text>
+      <text x="-2" y="218" fill="#5D6678" font-family="Arial, sans-serif" font-size="11" font-weight="700">Indosat</text>
+    </g>
+    <g transform="translate(1078 462)">
+      <rect x="0" y="42" width="30" height="148" rx="7" fill="url(#bar)"/>
+      <text x="7" y="32" fill="#4D3DF1" font-family="Arial, sans-serif" font-size="11" font-weight="900">28</text>
+      <text x="-8" y="218" fill="#5D6678" font-family="Arial, sans-serif" font-size="11" font-weight="700">XL Axiata</text>
+    </g>
+    <g transform="translate(1230 482)">
+      <rect x="0" y="42" width="30" height="148" rx="7" fill="url(#bar)"/>
+      <text x="7" y="32" fill="#4D3DF1" font-family="Arial, sans-serif" font-size="11" font-weight="900">20</text>
+      <text x="-12" y="218" fill="#5D6678" font-family="Arial, sans-serif" font-size="11" font-weight="700">Smartfren</text>
+    </g>
+  </g>
+
+  <defs>
+    <linearGradient id="greenCard" x1="12" y1="88" x2="256" y2="251" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#006E63"/>
+      <stop offset="1" stop-color="#101827"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="190" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6862FF"/>
+      <stop offset="1" stop-color="#4430D8"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10" y="10" width="880" height="70" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1B2533" flood-opacity="0.08"/>
+    </filter>
+    <filter id="cardShadow" x="-8" y="70" width="1370" height="560" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="9" stdDeviation="9" flood-color="#1B2533" flood-opacity="0.10"/>
+    </filter>
+  </defs>
 </svg>

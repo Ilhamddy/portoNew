@@ -87,21 +87,21 @@ export default function PortfolioPage() {
             >
               <div onClick={() => setSelected(project)} className="w-full h-full flex flex-col justify-between">
                 <div className="p-4 sm:p-5 md:p-6 pb-0">
-                  <div className={`overflow-hidden border border-current/15 bg-white/20 dark:bg-black/15 shadow-[0_18px_50px_rgba(0,0,0,0.12)] ${
+                  <div className={`overflow-hidden rounded-[22px] border border-current/15 bg-white/35 dark:bg-black/20 p-2 shadow-[0_18px_55px_rgba(0,0,0,0.16)] ring-1 ring-white/25 dark:ring-white/10 ${
                     project.size === "large" ? "aspect-[16/7] sm:aspect-[16/8]" : "aspect-[16/10]"
                   }`}>
-                    <div className="flex h-8 items-center gap-1.5 border-b border-current/10 bg-white/35 px-3 dark:bg-black/20">
+                    <div className="flex h-8 items-center gap-1.5 rounded-t-[16px] border border-current/10 border-b-0 bg-white/55 px-3 dark:bg-black/30">
                       <span className="h-2 w-2 rounded-full bg-current opacity-30" />
                       <span className="h-2 w-2 rounded-full bg-current opacity-20" />
                       <span className="h-2 w-2 rounded-full bg-current opacity-10" />
                     </div>
-                    <div className="relative h-[calc(100%-2rem)]">
+                    <div className="relative h-[calc(100%-2rem)] overflow-hidden rounded-b-[16px] border border-current/10 bg-white dark:bg-black">
                       <Image
                         src={project.image}
                         alt={`${project.title} preview`}
                         fill
                         sizes={project.size === "large" ? "(min-width: 768px) 1100px, 100vw" : "(min-width: 768px) 50vw, 100vw"}
-                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        className="object-contain object-center p-2 transition-transform duration-500 group-hover:scale-[1.02]"
                       />
                     </div>
                   </div>
@@ -176,19 +176,19 @@ export default function PortfolioPage() {
             >
               <X size={20} />
             </button>
-            <div className="overflow-hidden border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] mb-6">
-              <div className="flex h-8 items-center gap-1.5 border-b border-black/10 dark:border-white/10 px-3">
+            <div className="overflow-hidden rounded-[22px] border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] p-2 mb-6 shadow-[0_18px_55px_rgba(0,0,0,0.12)]">
+              <div className="flex h-8 items-center gap-1.5 rounded-t-[16px] border border-black/10 border-b-0 dark:border-white/10 px-3">
                 <span className="h-2 w-2 rounded-full bg-night-bordeaux-600/60 dark:bg-dark-cyan-400/60" />
                 <span className="h-2 w-2 rounded-full bg-black/20 dark:bg-white/20" />
                 <span className="h-2 w-2 rounded-full bg-black/10 dark:bg-white/10" />
               </div>
-              <div className="relative aspect-[16/10]">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-b-[16px] border border-black/10 dark:border-white/10 bg-white dark:bg-black">
                 <Image
                   src={selected.image}
                   alt={`${selected.title} preview`}
                   fill
                   sizes="(min-width: 640px) 512px, 100vw"
-                  className="object-cover object-center"
+                  className="object-contain object-center p-2"
                 />
               </div>
             </div>

@@ -63,6 +63,28 @@ export const usePortfolioStore = create(
     }),
     {
       name: "ilhamddy-portfolio-content",
+      version: 1,
+      migrate: (persistedState) => {
+        if (!persistedState?.config) return persistedState;
+
+        return {
+          ...persistedState,
+          config: {
+            ...persistedState.config,
+            projects: persistedState.config.projects.map((project) => {
+              if (project.id === 1) {
+                return { ...project, image: "/projects/dashboard-analytics.png" };
+              }
+
+              if (project.id === 2) {
+                return { ...project, image: "/projects/porto.png" };
+              }
+
+              return project;
+            }),
+          },
+        };
+      },
     }
   )
 );
