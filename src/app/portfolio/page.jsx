@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -78,36 +79,49 @@ export default function PortfolioPage() {
           {filtered.map((project) => (
             <SpotlightCard
               key={project.id}
-              className={`group relative p-7 md:p-14 min-h-[250px] md:min-h-[260px] flex flex-col justify-between overflow-hidden cursor-pointer hover:scale-[1.005] border border-black/10 dark:border-white/10 ${project.color} ${
+              className={`group relative p-5 md:p-8 min-h-[420px] md:min-h-[360px] flex flex-col justify-between overflow-hidden cursor-pointer hover:scale-[1.005] border border-black/10 dark:border-white/10 ${project.color} ${
                 project.size === "large" ? "md:col-span-2" : ""
               }`}
             >
               <div onClick={() => setSelected(project)} className="w-full h-full flex flex-col justify-between">
-                <div className="flex justify-between items-start">
-                  <span className="text-xs tracking-[0.25em] uppercase opacity-60 font-semibold">
-                    {project.category}
-                  </span>
-                  <span className="text-xs opacity-50 font-mono">{project.year}</span>
-                </div>
-                <div className="mt-6">
-                  <p className="text-xs tracking-widest uppercase opacity-55 mb-2">{project.client}</p>
-                  <h3
-                    className={`font-black uppercase tracking-tight leading-tight mb-3 ${
-                      project.size === "large" ? "text-2xl sm:text-3xl md:text-5xl" : "text-2xl md:text-3xl"
-                    }`}
-                  >
-                    {project.title}
-                  </h3>
-                  <p className="text-sm opacity-70 mb-4 leading-relaxed max-w-lg font-medium">{project.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="text-[9px] tracking-wider uppercase border border-current opacity-40 px-2 py-0.5 font-bold"
-                      >
-                        {t}
+                <div className={`grid gap-6 ${project.size === "large" ? "md:grid-cols-[1fr_380px] md:items-stretch" : ""}`}>
+                  <div className="flex flex-col justify-between min-h-[220px]">
+                    <div className="flex justify-between items-start gap-4">
+                      <span className="text-xs tracking-[0.25em] uppercase opacity-60 font-semibold">
+                        {project.category}
                       </span>
-                    ))}
+                      <span className="text-xs opacity-50 font-mono">{project.year}</span>
+                    </div>
+                    <div className="mt-6">
+                      <p className="text-xs tracking-widest uppercase opacity-55 mb-2">{project.client}</p>
+                      <h3
+                        className={`font-black uppercase tracking-tight leading-tight mb-3 ${
+                          project.size === "large" ? "text-2xl sm:text-3xl md:text-5xl" : "text-2xl md:text-3xl"
+                        }`}
+                      >
+                        {project.title}
+                      </h3>
+                      <p className="text-sm opacity-70 mb-4 leading-relaxed max-w-lg font-medium">{project.desc}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((t) => (
+                          <span
+                            key={t}
+                            className="text-[9px] tracking-wider uppercase border border-current opacity-40 px-2 py-0.5 font-bold"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative aspect-[16/10] overflow-hidden border border-current/15 bg-white/10 dark:bg-black/10">
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      fill
+                      sizes={project.size === "large" ? "(min-width: 768px) 380px, 100vw" : "(min-width: 768px) 50vw, 100vw"}
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
                 </div>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current opacity-30 group-hover:w-full transition-all duration-500" />
@@ -136,6 +150,15 @@ export default function PortfolioPage() {
             >
               <X size={20} />
             </button>
+            <div className="relative aspect-[16/10] overflow-hidden border border-black/10 dark:border-white/10 mb-6">
+              <Image
+                src={selected.image}
+                alt={`${selected.title} preview`}
+                fill
+                sizes="(min-width: 640px) 512px, 100vw"
+                className="object-cover"
+              />
+            </div>
             <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 mb-2 block font-semibold">
               {selected.category} · {selected.year}
             </span>

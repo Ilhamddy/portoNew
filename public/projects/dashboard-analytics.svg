@@ -1,0 +1,14 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#0d1516"/>
+  <rect x="72" y="72" width="1056" height="656" fill="#eff5f5" opacity=".08"/>
+  <rect x="120" y="128" width="260" height="544" fill="#60999f" opacity=".18"/>
+  <rect x="420" y="128" width="660" height="160" fill="#60999f" opacity=".28"/>
+  <rect x="420" y="328" width="300" height="344" fill="#eff5f5" opacity=".12"/>
+  <rect x="760" y="328" width="320" height="344" fill="#eff5f5" opacity=".12"/>
+  <path d="M460 604L540 510L620 548L700 420L780 456L860 376L1036 480" stroke="#80adb3" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="220" cy="196" r="40" fill="#80adb3"/>
+  <rect x="180" y="292" width="152" height="18" fill="#eff5f5" opacity=".45"/>
+  <rect x="180" y="340" width="124" height="18" fill="#eff5f5" opacity=".25"/>
+  <rect x="180" y="388" width="172" height="18" fill="#eff5f5" opacity=".25"/>
+  <text x="120" y="720" fill="#eff5f5" font-family="Arial, sans-serif" font-size="40" font-weight="700">Dashboard Analytics</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#f1a7b3"/>
+  <rect x="150" y="116" width="900" height="568" fill="#1f0509" opacity=".9"/>
+  <circle cx="600" cy="400" r="76" fill="#fce9ec"/>
+  <circle cx="310" cy="240" r="50" fill="#dd2241"/>
+  <circle cx="890" cy="240" r="50" fill="#dd2241"/>
+  <circle cx="310" cy="560" r="50" fill="#dd2241"/>
+  <circle cx="890" cy="560" r="50" fill="#dd2241"/>
+  <path d="M350 260L540 370M850 260L660 370M350 540L540 430M850 540L660 430" stroke="#fce9ec" stroke-width="16" stroke-linecap="round"/>
+  <rect x="506" y="390" width="188" height="20" fill="#1f0509"/>
+  <rect x="590" y="306" width="20" height="188" fill="#1f0509"/>
+  <text x="150" y="744" fill="#1f0509" font-family="Arial, sans-serif" font-size="40" font-weight="700">Enterprise Infra Setup</text>
+</svg>

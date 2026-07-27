@@ -1,0 +1,13 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#395c60"/>
+  <rect x="120" y="104" width="960" height="592" fill="#eff5f5"/>
+  <rect x="176" y="160" width="848" height="88" fill="#0d1516"/>
+  <rect x="176" y="304" width="230" height="260" fill="#60999f"/>
+  <rect x="486" y="304" width="230" height="260" fill="#bfd6d9"/>
+  <rect x="796" y="304" width="230" height="260" fill="#80adb3"/>
+  <rect x="210" y="604" width="162" height="26" fill="#0d1516" opacity=".7"/>
+  <rect x="520" y="604" width="162" height="26" fill="#0d1516" opacity=".7"/>
+  <rect x="830" y="604" width="162" height="26" fill="#0d1516" opacity=".7"/>
+  <circle cx="952" cy="204" r="24" fill="#80adb3"/>
+  <text x="176" y="744" fill="#eff5f5" font-family="Arial, sans-serif" font-size="40" font-weight="700">Online Store Platform</text>
+</svg>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -178,29 +179,40 @@ export default function Home() {
           {projects.slice(0, 2).map((project) => (
             <SpotlightCard
               key={project.id}
-              className={`p-7 md:p-14 min-h-[260px] md:min-h-[300px] flex flex-col justify-between border border-black/15 dark:border-white/15 ${project.color}`}
+              className={`p-5 md:p-8 min-h-[360px] flex flex-col justify-between border border-black/15 dark:border-white/15 ${project.color}`}
             >
-              <div className="flex justify-between items-start">
-                <span className="text-[10px] tracking-[0.25em] uppercase opacity-60 font-semibold">{project.category}</span>
-                <span className="text-xs opacity-50 font-mono">{project.year}</span>
+              <div className="relative aspect-[16/10] overflow-hidden border border-current/15 bg-white/10 dark:bg-black/10 mb-6">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} preview`}
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-              <div className="mt-8">
-                <p className="text-xs tracking-widest uppercase opacity-55 mb-2">{project.client}</p>
-                <h3 className="font-black uppercase tracking-tight leading-tight text-2xl md:text-3xl mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-sm opacity-70 mb-4 leading-relaxed max-w-lg font-medium">
-                  {project.desc}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[9px] tracking-wider uppercase border border-current opacity-40 px-2 py-0.5 font-bold"
-                    >
-                      {t}
-                    </span>
-                  ))}
+              <div>
+                <div className="flex justify-between items-start gap-4">
+                  <span className="text-[10px] tracking-[0.25em] uppercase opacity-60 font-semibold">{project.category}</span>
+                  <span className="text-xs opacity-50 font-mono">{project.year}</span>
+                </div>
+                <div className="mt-6">
+                  <p className="text-xs tracking-widest uppercase opacity-55 mb-2">{project.client}</p>
+                  <h3 className="font-black uppercase tracking-tight leading-tight text-2xl md:text-3xl mb-3">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm opacity-70 mb-4 leading-relaxed max-w-lg font-medium">
+                    {project.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[9px] tracking-wider uppercase border border-current opacity-40 px-2 py-0.5 font-bold"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </SpotlightCard>
