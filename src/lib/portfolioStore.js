@@ -63,7 +63,7 @@ export const usePortfolioStore = create(
     }),
     {
       name: "ilhamddy-portfolio-content",
-      version: 1,
+      version: 3,
       migrate: (persistedState) => {
         if (!persistedState?.config) return persistedState;
 
@@ -78,6 +78,14 @@ export const usePortfolioStore = create(
 
               if (project.id === 2) {
                 return { ...project, image: "/projects/porto.png" };
+              }
+
+              if (project.id === 3) {
+                return { ...project, image: "/projects/jaringan.png" };
+              }
+
+              if (project.id === 6) {
+                return { ...project, image: "/projects/company-profile.png" };
               }
 
               return project;
