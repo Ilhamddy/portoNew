@@ -8,12 +8,14 @@ import Footer from "@/components/Footer";
 import SplitText from "@/components/reactbits/SplitText";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import AnimatedBackground from "@/components/reactbits/AnimatedBackground";
-import { portfolioConfig } from "@/data/portfolio";
+import InlineEdit from "@/components/admin/InlineEdit";
+import { usePortfolioStore } from "@/lib/portfolioStore";
 import { ArrowRight, Award, Users, Briefcase } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Home() {
-  const { personal, services, projects, heroSlides } = portfolioConfig;
+  const { config, updateHeroSlide, updateProject, updateService } = usePortfolioStore();
+  const { personal, services, projects, heroSlides } = config;
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -49,25 +51,45 @@ export default function Home() {
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-8 h-px bg-black dark:bg-white" />
                 <span className="text-xs tracking-[0.3em] uppercase text-black/50 dark:text-white/50 font-bold">
-                  {heroSlides[currentSlide].tagline}
+                  <InlineEdit
+                    value={heroSlides[currentSlide].tagline}
+                    onSave={(value) => updateHeroSlide(currentSlide, "tagline", value)}
+                  />
                 </span>
               </div>
               
               <h1 className="text-[clamp(2.15rem,11vw,6.5rem)] font-black uppercase tracking-tighter leading-[0.9] mb-6 md:mb-8 break-words">
-                <span className="block">{heroSlides[currentSlide].titleLine1}</span>
-                <span className="text-stroke block">{heroSlides[currentSlide].titleLine2}</span>
+                <InlineEdit
+                  as="span"
+                  className="block"
+                  value={heroSlides[currentSlide].titleLine1}
+                  onSave={(value) => updateHeroSlide(currentSlide, "titleLine1", value)}
+                />
+                <InlineEdit
+                  as="span"
+                  className="text-stroke block"
+                  value={heroSlides[currentSlide].titleLine2}
+                  onSave={(value) => updateHeroSlide(currentSlide, "titleLine2", value)}
+                />
               </h1>
 
-              <p className="max-w-2xl text-black/60 dark:text-white/60 text-sm sm:text-base md:text-lg leading-relaxed mb-8 md:mb-12 font-medium min-h-[4.5rem] sm:min-h-[3.5rem]">
-                {heroSlides[currentSlide].desc}
-              </p>
+              <InlineEdit
+                as="p"
+                multiline
+                className="max-w-2xl text-black/60 dark:text-white/60 text-sm sm:text-base md:text-lg leading-relaxed mb-8 md:mb-12 font-medium min-h-[4.5rem] sm:min-h-[3.5rem]"
+                value={heroSlides[currentSlide].desc}
+                onSave={(value) => updateHeroSlide(currentSlide, "desc", value)}
+              />
 
               <div className="flex flex-wrap gap-4">
                 <Link
                   href={heroSlides[currentSlide].ctaLink}
                   className="group inline-flex w-full sm:w-auto justify-center items-center gap-3 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black px-6 sm:px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-700 dark:hover:bg-dark-cyan-400 transition-all duration-300"
                 >
-                  {heroSlides[currentSlide].ctaText}
+                  <InlineEdit
+                    value={heroSlides[currentSlide].ctaText}
+                    onSave={(value) => updateHeroSlide(currentSlide, "ctaText", value)}
+                  />
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
@@ -145,12 +167,19 @@ export default function Home() {
                 <span className="text-xs tracking-widest text-black/35 dark:text-white/35 font-mono block mb-4">
                   {svc.no}
                 </span>
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-4 group-hover:text-black/80 dark:group-hover:text-white/80">
-                  {svc.title}
-                </h3>
-                <p className="text-sm text-black/60 dark:text-white/60 leading-relaxed font-medium">
-                  {svc.desc}
-                </p>
+                <InlineEdit
+                  as="h3"
+                  className="text-xl md:text-2xl font-black uppercase tracking-tight mb-4 group-hover:text-black/80 dark:group-hover:text-white/80"
+                  value={svc.title}
+                  onSave={(value) => updateService(services.findIndex((item) => item.no === svc.no), "title", value)}
+                />
+                <InlineEdit
+                  as="p"
+                  multiline
+                  className="text-sm text-black/60 dark:text-white/60 leading-relaxed font-medium"
+                  value={svc.desc}
+                  onSave={(value) => updateService(services.findIndex((item) => item.no === svc.no), "desc", value)}
+                />
               </div>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black dark:bg-white group-hover:w-full transition-all duration-300" />
             </SpotlightCard>
@@ -205,13 +234,25 @@ export default function Home() {
                   <span className="text-xs opacity-50 font-mono">{project.year}</span>
                 </div>
                 <div className="mt-6">
-                  <p className="text-xs tracking-widest uppercase opacity-55 mb-2">{project.client}</p>
-                  <h3 className="font-black uppercase tracking-tight leading-tight text-2xl md:text-3xl mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm opacity-70 mb-4 leading-relaxed max-w-lg font-medium">
-                    {project.desc}
-                  </p>
+                  <InlineEdit
+                    as="p"
+                    className="text-xs tracking-widest uppercase opacity-55 mb-2"
+                    value={project.client}
+                    onSave={(value) => updateProject(project.id, "client", value)}
+                  />
+                  <InlineEdit
+                    as="h3"
+                    className="font-black uppercase tracking-tight leading-tight text-2xl md:text-3xl mb-3"
+                    value={project.title}
+                    onSave={(value) => updateProject(project.id, "title", value)}
+                  />
+                  <InlineEdit
+                    as="p"
+                    multiline
+                    className="text-sm opacity-70 mb-4 leading-relaxed max-w-lg font-medium"
+                    value={project.desc}
+                    onSave={(value) => updateProject(project.id, "desc", value)}
+                  />
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map((t) => (
                       <span

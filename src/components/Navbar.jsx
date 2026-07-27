@@ -4,14 +4,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import { portfolioConfig } from "@/data/portfolio";
+import InlineEdit from "@/components/admin/InlineEdit";
+import { usePortfolioStore } from "@/lib/portfolioStore";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const pathname = usePathname();
-  const { personal, navLinks } = portfolioConfig;
+  const { config, updatePersonal } = usePortfolioStore();
+  const { personal, navLinks } = config;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -60,11 +62,17 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-2">
           <span className="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none select-none text-black dark:text-white">
-            {personal.initials}
+            <InlineEdit
+              value={personal.initials}
+              onSave={(value) => updatePersonal("initials", value)}
+            />
           </span>
           <span className="hidden sm:block w-px h-5 bg-black/40 dark:bg-white/40" />
           <span className="hidden sm:block text-xs tracking-[0.25em] uppercase text-black/60 dark:text-white/60 font-medium">
-            {personal.name}
+            <InlineEdit
+              value={personal.name}
+              onSave={(value) => updatePersonal("name", value)}
+            />
           </span>
         </Link>
 

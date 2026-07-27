@@ -6,10 +6,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SplitText from "@/components/reactbits/SplitText";
 import AnimatedBackground from "@/components/reactbits/AnimatedBackground";
-import { portfolioConfig } from "@/data/portfolio";
+import InlineEdit from "@/components/admin/InlineEdit";
+import { usePortfolioStore } from "@/lib/portfolioStore";
 
 export default function AboutPage() {
-  const { personal, skills, experiences } = portfolioConfig;
+  const { config, updatePersonal, updatePersonalList } = usePortfolioStore();
+  const { personal, skills, experiences } = config;
 
   return (
     <main className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors duration-300 overflow-x-hidden relative">
@@ -57,13 +59,21 @@ export default function AboutPage() {
         {/* Right: Bio text */}
         <div className="flex flex-col gap-8">
           <div>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight mb-6 leading-tight">
-              {personal.name}
-            </h2>
+            <InlineEdit
+              as="h2"
+              className="text-3xl md:text-4xl font-black uppercase tracking-tight mb-6 leading-tight"
+              value={personal.name}
+              onSave={(value) => updatePersonal("name", value)}
+            />
             {personal.detailedBio.map((paragraph, i) => (
-              <p key={i} className="text-black/60 dark:text-white/60 leading-relaxed mb-4 font-medium">
-                {paragraph}
-              </p>
+              <InlineEdit
+                key={i}
+                as="p"
+                multiline
+                className="text-black/60 dark:text-white/60 leading-relaxed mb-4 font-medium"
+                value={paragraph}
+                onSave={(value) => updatePersonalList("detailedBio", i, value)}
+              />
             ))}
           </div>
 

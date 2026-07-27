@@ -8,11 +8,13 @@ import Footer from "@/components/Footer";
 import SplitText from "@/components/reactbits/SplitText";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import AnimatedBackground from "@/components/reactbits/AnimatedBackground";
-import { portfolioConfig } from "@/data/portfolio";
+import InlineEdit from "@/components/admin/InlineEdit";
+import { usePortfolioStore } from "@/lib/portfolioStore";
 import { X, ArrowRight } from "lucide-react";
 
 export default function PortfolioPage() {
-  const { categories, projects } = portfolioConfig;
+  const { config, updateProject } = usePortfolioStore();
+  const { categories, projects } = config;
   const [activeCategory, setActiveCategory] = useState("All");
   const [selected, setSelected] = useState(null);
 
@@ -114,15 +116,27 @@ export default function PortfolioPage() {
                       <span className="text-xs opacity-50 font-mono">{project.year}</span>
                     </div>
                     <div className="mt-6">
-                      <p className="text-xs tracking-widest uppercase opacity-55 mb-2">{project.client}</p>
-                      <h3
+                      <InlineEdit
+                        as="p"
+                        className="text-xs tracking-widest uppercase opacity-55 mb-2"
+                        value={project.client}
+                        onSave={(value) => updateProject(project.id, "client", value)}
+                      />
+                      <InlineEdit
                         className={`font-black uppercase tracking-tight leading-tight mb-3 ${
                           project.size === "large" ? "text-2xl sm:text-3xl md:text-5xl" : "text-2xl md:text-3xl"
                         }`}
-                      >
-                        {project.title}
-                      </h3>
-                      <p className="text-sm opacity-70 mb-4 leading-relaxed max-w-lg font-medium">{project.desc}</p>
+                        as="h3"
+                        value={project.title}
+                        onSave={(value) => updateProject(project.id, "title", value)}
+                      />
+                      <InlineEdit
+                        as="p"
+                        multiline
+                        className="text-sm opacity-70 mb-4 leading-relaxed max-w-lg font-medium"
+                        value={project.desc}
+                        onSave={(value) => updateProject(project.id, "desc", value)}
+                      />
                       <div className="flex flex-wrap gap-2">
                         {project.tech.map((t) => (
                           <span
@@ -181,11 +195,34 @@ export default function PortfolioPage() {
             <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 mb-2 block font-semibold">
               {selected.category} · {selected.year}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight mb-2">{selected.title}</h2>
-            <p className="text-xs tracking-widest uppercase text-black/40 dark:text-white/40 mb-6 font-semibold">
-              {selected.client}
-            </p>
-            <p className="text-black/60 dark:text-white/60 leading-relaxed mb-8 font-medium">{selected.desc}</p>
+            <InlineEdit
+              as="h2"
+              className="text-2xl sm:text-3xl font-black uppercase tracking-tight mb-2"
+              value={selected.title}
+              onSave={(value) => {
+                updateProject(selected.id, "title", value);
+                setSelected((current) => ({ ...current, title: value }));
+              }}
+            />
+            <InlineEdit
+              as="p"
+              className="text-xs tracking-widest uppercase text-black/40 dark:text-white/40 mb-6 font-semibold"
+              value={selected.client}
+              onSave={(value) => {
+                updateProject(selected.id, "client", value);
+                setSelected((current) => ({ ...current, client: value }));
+              }}
+            />
+            <InlineEdit
+              as="p"
+              multiline
+              className="text-black/60 dark:text-white/60 leading-relaxed mb-8 font-medium"
+              value={selected.desc}
+              onSave={(value) => {
+                updateProject(selected.id, "desc", value);
+                setSelected((current) => ({ ...current, desc: value }));
+              }}
+            />
             <div className="flex flex-wrap gap-2 mb-8">
               {selected.tech.map((t) => (
                 <span

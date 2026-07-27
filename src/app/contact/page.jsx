@@ -6,11 +6,11 @@ import Footer from "@/components/Footer";
 import SplitText from "@/components/reactbits/SplitText";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import AnimatedBackground from "@/components/reactbits/AnimatedBackground";
-import { portfolioConfig } from "@/data/portfolio";
+import { usePortfolioConfig } from "@/lib/portfolioStore";
 import { ArrowRight, Check } from "lucide-react";
 
 export default function ContactPage() {
-  const { personal } = portfolioConfig;
+  const { personal } = usePortfolioConfig();
 
   const [form, setForm] = useState({
     name: "",

@@ -7,11 +7,13 @@ import Footer from "@/components/Footer";
 import SplitText from "@/components/reactbits/SplitText";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import AnimatedBackground from "@/components/reactbits/AnimatedBackground";
-import { portfolioConfig } from "@/data/portfolio";
+import InlineEdit from "@/components/admin/InlineEdit";
+import { usePortfolioStore } from "@/lib/portfolioStore";
 import { Plus } from "lucide-react";
 
 export default function ServicesPage() {
-  const { services, process } = portfolioConfig;
+  const { config, updateService } = usePortfolioStore();
+  const { services, process } = config;
   const [activeService, setActiveService] = useState(-1);
 
   return (
@@ -52,7 +54,12 @@ export default function ServicesPage() {
                   <span className="text-xs tracking-[0.3em] text-black/30 dark:text-white/30 font-mono hidden sm:block">
                     {svc.no}
                   </span>
-                  <h2 className="text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-tight leading-tight">{svc.title}</h2>
+                  <InlineEdit
+                    as="h2"
+                    className="text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-tight leading-tight"
+                    value={svc.title}
+                    onSave={(value) => updateService(i, "title", value)}
+                  />
                 </div>
                 <Plus
                   size={28}
@@ -65,7 +72,13 @@ export default function ServicesPage() {
                 }`}
               >
                 <div className="pb-8 md:pb-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 pl-0 md:pl-24">
-                  <p className="text-black/60 dark:text-white/60 leading-relaxed font-medium">{svc.desc}</p>
+                  <InlineEdit
+                    as="p"
+                    multiline
+                    className="text-black/60 dark:text-white/60 leading-relaxed font-medium"
+                    value={svc.desc}
+                    onSave={(value) => updateService(i, "desc", value)}
+                  />
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {svc.features.map((f) => (
                       <li key={f} className="flex items-center gap-2 text-sm text-black/70 dark:text-white/70 font-semibold">

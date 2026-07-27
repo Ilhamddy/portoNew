@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
-import { portfolioConfig } from "@/data/portfolio";
+import InlineEdit from "@/components/admin/InlineEdit";
+import { usePortfolioStore } from "@/lib/portfolioStore";
 
 export default function Footer() {
-  const { personal, navLinks, services } = portfolioConfig;
+  const { config, updatePersonal } = usePortfolioStore();
+  const { personal, navLinks, services } = config;
 
   return (
     <footer className="border-t border-black/10 dark:border-white/10 bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
@@ -14,15 +16,30 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-flex items-center gap-3 mb-4">
               <span className="text-2xl font-black tracking-tighter uppercase leading-none">
-                {personal.initials}
+                <InlineEdit
+                  value={personal.initials}
+                  onSave={(value) => updatePersonal("initials", value)}
+                />
               </span>
               <span className="w-px h-6 bg-black/25 dark:bg-white/25" />
               <span className="text-xs tracking-[0.25em] uppercase text-black/55 dark:text-white/55 font-bold">
-                {personal.name}
+                <InlineEdit
+                  value={personal.name}
+                  onSave={(value) => updatePersonal("name", value)}
+                />
               </span>
             </Link>
             <p className="text-sm text-black/55 dark:text-white/55 leading-relaxed max-w-sm font-medium">
-              {personal.role} berbasis di {personal.location}, fokus membangun produk digital yang cepat, rapi, dan siap digunakan.
+              <InlineEdit
+                value={personal.role}
+                onSave={(value) => updatePersonal("role", value)}
+              />{" "}
+              berbasis di{" "}
+              <InlineEdit
+                value={personal.location}
+                onSave={(value) => updatePersonal("location", value)}
+              />
+              , fokus membangun produk digital yang cepat, rapi, dan siap digunakan.
             </p>
 
             <div className="mt-5 inline-flex items-center gap-2 border border-black/10 dark:border-white/10 px-3 py-2">

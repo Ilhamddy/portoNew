@@ -1,4 +1,5 @@
 import { Syne, DM_Sans } from "next/font/google";
+import AdminEditToolbar from "@/components/admin/AdminEditToolbar";
 import "./globals.css";
 
 const syne = Syne({
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
         {children}
+        <AdminEditToolbar />
       </body>
     </html>
   );
