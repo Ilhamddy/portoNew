@@ -79,13 +79,34 @@ export default function PortfolioPage() {
           {filtered.map((project) => (
             <SpotlightCard
               key={project.id}
-              className={`group relative p-5 md:p-8 min-h-[420px] md:min-h-[360px] flex flex-col justify-between overflow-hidden cursor-pointer hover:scale-[1.005] border border-black/10 dark:border-white/10 ${project.color} ${
+              className={`group relative min-h-[440px] flex flex-col overflow-hidden cursor-pointer hover:scale-[1.005] border border-black/10 dark:border-white/10 ${project.color} ${
                 project.size === "large" ? "md:col-span-2" : ""
               }`}
             >
               <div onClick={() => setSelected(project)} className="w-full h-full flex flex-col justify-between">
-                <div className={`grid gap-6 ${project.size === "large" ? "md:grid-cols-[1fr_380px] md:items-stretch" : ""}`}>
-                  <div className="flex flex-col justify-between min-h-[220px]">
+                <div className="p-4 sm:p-5 md:p-6 pb-0">
+                  <div className={`overflow-hidden border border-current/15 bg-white/20 dark:bg-black/15 shadow-[0_18px_50px_rgba(0,0,0,0.12)] ${
+                    project.size === "large" ? "aspect-[16/7] sm:aspect-[16/8]" : "aspect-[16/10]"
+                  }`}>
+                    <div className="flex h-8 items-center gap-1.5 border-b border-current/10 bg-white/35 px-3 dark:bg-black/20">
+                      <span className="h-2 w-2 rounded-full bg-current opacity-30" />
+                      <span className="h-2 w-2 rounded-full bg-current opacity-20" />
+                      <span className="h-2 w-2 rounded-full bg-current opacity-10" />
+                    </div>
+                    <div className="relative h-[calc(100%-2rem)]">
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} preview`}
+                        fill
+                        sizes={project.size === "large" ? "(min-width: 768px) 1100px, 100vw" : "(min-width: 768px) 50vw, 100vw"}
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-1 flex-col justify-between p-5 sm:p-6 md:p-8">
+                  <div>
                     <div className="flex justify-between items-start gap-4">
                       <span className="text-xs tracking-[0.25em] uppercase opacity-60 font-semibold">
                         {project.category}
@@ -114,15 +135,6 @@ export default function PortfolioPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="relative aspect-[16/10] overflow-hidden border border-current/15 bg-white/10 dark:bg-black/10">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} preview`}
-                      fill
-                      sizes={project.size === "large" ? "(min-width: 768px) 380px, 100vw" : "(min-width: 768px) 50vw, 100vw"}
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
                 </div>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current opacity-30 group-hover:w-full transition-all duration-500" />
                 <span className="absolute top-4 right-4 opacity-0 group-hover:opacity-60 transition-opacity text-xs tracking-widest uppercase font-bold">
@@ -150,14 +162,21 @@ export default function PortfolioPage() {
             >
               <X size={20} />
             </button>
-            <div className="relative aspect-[16/10] overflow-hidden border border-black/10 dark:border-white/10 mb-6">
-              <Image
-                src={selected.image}
-                alt={`${selected.title} preview`}
-                fill
-                sizes="(min-width: 640px) 512px, 100vw"
-                className="object-cover"
-              />
+            <div className="overflow-hidden border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] mb-6">
+              <div className="flex h-8 items-center gap-1.5 border-b border-black/10 dark:border-white/10 px-3">
+                <span className="h-2 w-2 rounded-full bg-night-bordeaux-600/60 dark:bg-dark-cyan-400/60" />
+                <span className="h-2 w-2 rounded-full bg-black/20 dark:bg-white/20" />
+                <span className="h-2 w-2 rounded-full bg-black/10 dark:bg-white/10" />
+              </div>
+              <div className="relative aspect-[16/10]">
+                <Image
+                  src={selected.image}
+                  alt={`${selected.title} preview`}
+                  fill
+                  sizes="(min-width: 640px) 512px, 100vw"
+                  className="object-cover object-center"
+                />
+              </div>
             </div>
             <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 mb-2 block font-semibold">
               {selected.category} · {selected.year}

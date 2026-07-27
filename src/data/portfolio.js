@@ -1,7 +1,7 @@
 export const portfolioConfig = {
   personal: {
     name: "ilhamddy",
-    initials: "ID",
+    initials: "IM",
     role: "Frontend Developer & IT Consultant",
     bio: "Saya adalah seorang Frontend Developer & IT Consultant yang berpengalaman dalam membangun produk digital dari nol hingga siap rilis. Saya menggabungkan kemampuan teknis dengan pemahaman bisnis untuk menghasilkan solusi yang relevan, cepat, dan berdampak.",
     detailedBio: [

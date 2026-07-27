@@ -179,18 +179,27 @@ export default function Home() {
           {projects.slice(0, 2).map((project) => (
             <SpotlightCard
               key={project.id}
-              className={`p-5 md:p-8 min-h-[360px] flex flex-col justify-between border border-black/15 dark:border-white/15 ${project.color}`}
+              className={`group min-h-[430px] flex flex-col justify-between border border-black/15 dark:border-white/15 ${project.color}`}
             >
-              <div className="relative aspect-[16/10] overflow-hidden border border-current/15 bg-white/10 dark:bg-black/10 mb-6">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} preview`}
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <div className="p-4 sm:p-5 md:p-6 pb-0">
+                <div className="overflow-hidden border border-current/15 bg-white/20 dark:bg-black/15 shadow-[0_18px_50px_rgba(0,0,0,0.12)]">
+                  <div className="flex h-8 items-center gap-1.5 border-b border-current/10 bg-white/35 px-3 dark:bg-black/20">
+                    <span className="h-2 w-2 rounded-full bg-current opacity-30" />
+                    <span className="h-2 w-2 rounded-full bg-current opacity-20" />
+                    <span className="h-2 w-2 rounded-full bg-current opacity-10" />
+                  </div>
+                  <div className="relative aspect-[16/10]">
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                </div>
               </div>
-              <div>
+              <div className="p-5 sm:p-6 md:p-8">
                 <div className="flex justify-between items-start gap-4">
                   <span className="text-[10px] tracking-[0.25em] uppercase opacity-60 font-semibold">{project.category}</span>
                   <span className="text-xs opacity-50 font-mono">{project.year}</span>
