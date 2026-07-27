@@ -95,6 +95,14 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+html {
+  overflow-x: hidden;
+}
+
+a, button, input, textarea, select {
+  min-width: 0;
+}
+
 h1, h2, h3, h4, h5, h6, nav, button {
   font-family: var(--font-syne), sans-serif;
 }
@@ -108,4 +116,10 @@ h1, h2, h3, h4, h5, h6, nav, button {
 .dark .text-stroke {
   -webkit-text-stroke: 2px #eff5f5;
   color: transparent;
+}
+
+@media (max-width: 640px) {
+  .text-stroke {
+    -webkit-text-stroke-width: 1.25px;
+  }
 }

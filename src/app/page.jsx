@@ -34,8 +34,8 @@ export default function Home() {
       <Navbar />
 
       {/* HERO SECTION WITH SLIDES */}
-      <section className="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-center min-h-[85vh] relative z-10">
-        <div className="relative overflow-hidden w-full min-h-[45vh] flex flex-col justify-center">
+      <section className="pt-28 sm:pt-32 pb-16 md:pb-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-center min-h-[78vh] md:min-h-[85vh] relative z-10">
+        <div className="relative overflow-hidden w-full min-h-[42vh] md:min-h-[45vh] flex flex-col justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -52,26 +52,26 @@ export default function Home() {
                 </span>
               </div>
               
-              <h1 className="text-[clamp(2.5rem,7vw,6.5rem)] font-black uppercase tracking-tighter leading-[0.9] mb-8">
+              <h1 className="text-[clamp(2.15rem,11vw,6.5rem)] font-black uppercase tracking-tighter leading-[0.9] mb-6 md:mb-8 break-words">
                 <span className="block">{heroSlides[currentSlide].titleLine1}</span>
                 <span className="text-stroke block">{heroSlides[currentSlide].titleLine2}</span>
               </h1>
 
-              <p className="max-w-2xl text-black/60 dark:text-white/60 text-base md:text-lg leading-relaxed mb-12 font-medium min-h-[3.5rem]">
+              <p className="max-w-2xl text-black/60 dark:text-white/60 text-sm sm:text-base md:text-lg leading-relaxed mb-8 md:mb-12 font-medium min-h-[4.5rem] sm:min-h-[3.5rem]">
                 {heroSlides[currentSlide].desc}
               </p>
 
               <div className="flex flex-wrap gap-4">
                 <Link
                   href={heroSlides[currentSlide].ctaLink}
-                  className="group inline-flex items-center gap-3 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-700 dark:hover:bg-dark-cyan-400 transition-all duration-300"
+                  className="group inline-flex w-full sm:w-auto justify-center items-center gap-3 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black px-6 sm:px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-700 dark:hover:bg-dark-cyan-400 transition-all duration-300"
                 >
                   {heroSlides[currentSlide].ctaText}
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-3 border border-night-bordeaux-600 text-night-bordeaux-600 dark:border-dark-cyan-400 dark:text-dark-cyan-400 px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-600 hover:text-white dark:hover:bg-dark-cyan-400 dark:hover:text-black transition-all duration-300"
+                  className="group inline-flex w-full sm:w-auto justify-center items-center gap-3 border border-night-bordeaux-600 text-night-bordeaux-600 dark:border-dark-cyan-400 dark:text-dark-cyan-400 px-6 sm:px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-600 hover:text-white dark:hover:bg-dark-cyan-400 dark:hover:text-black transition-all duration-300"
                 >
                   Hubungi Saya
                 </Link>
@@ -96,12 +96,12 @@ export default function Home() {
       </section>
 
       {/* STATS SECTION */}
-      <section className="py-16 border-t border-b border-black/10 dark:border-white/10 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-12 md:py-16 border-t border-b border-black/10 dark:border-white/10 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8">
           {personal.stats.map((stat, i) => (
             <div
               key={stat.label}
-              className="flex items-center gap-6 p-6 border border-black/5 dark:border-white/5 bg-black/[0.01] dark:bg-white/[0.01]"
+              className="flex items-center gap-4 md:gap-6 p-5 md:p-6 border border-black/5 dark:border-white/5 bg-black/[0.01] dark:bg-white/[0.01]"
             >
               <div className="p-4 bg-black/5 dark:bg-white/5 rounded-none">
                 {statIcons[i]}
@@ -118,8 +118,8 @@ export default function Home() {
       </section>
 
       {/* SERVICES PREVIEW */}
-      <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <section className="py-16 md:py-24 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-16">
           <div>
             <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 font-bold block mb-3">
               Layanan Unggulan
@@ -138,7 +138,7 @@ export default function Home() {
           {services.slice(0, 4).map((svc) => (
             <SpotlightCard
               key={svc.no}
-              className="border border-black/15 dark:border-white/15 p-8 md:p-10 flex flex-col justify-between min-h-[250px] group bg-white dark:bg-zinc-950/40"
+              className="border border-black/15 dark:border-white/15 p-6 md:p-10 flex flex-col justify-between min-h-[220px] md:min-h-[250px] group bg-white dark:bg-zinc-950/40"
             >
               <div>
                 <span className="text-xs tracking-widest text-black/35 dark:text-white/35 font-mono block mb-4">
@@ -158,8 +158,8 @@ export default function Home() {
       </section>
 
       {/* SELECTED PORTFOLIO PREVIEW */}
-      <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <section className="py-16 md:py-24 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-16">
           <div>
             <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 font-bold block mb-3">
               Karya Pilihan
@@ -178,7 +178,7 @@ export default function Home() {
           {projects.slice(0, 2).map((project) => (
             <SpotlightCard
               key={project.id}
-              className={`p-10 md:p-14 min-h-[300px] flex flex-col justify-between border border-black/15 dark:border-white/15 ${project.color}`}
+              className={`p-7 md:p-14 min-h-[260px] md:min-h-[300px] flex flex-col justify-between border border-black/15 dark:border-white/15 ${project.color}`}
             >
               <div className="flex justify-between items-start">
                 <span className="text-[10px] tracking-[0.25em] uppercase opacity-60 font-semibold">{project.category}</span>
@@ -209,16 +209,16 @@ export default function Home() {
       </section>
 
       {/* FOOTER CTA */}
-      <section className="mx-6 md:mx-12 mb-20 bg-black text-white dark:bg-zinc-900 p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-8 border border-black/10 dark:border-white/10">
+      <section className="mx-5 sm:mx-6 md:mx-12 mb-16 md:mb-20 bg-black text-white dark:bg-zinc-900 p-7 sm:p-10 md:p-20 flex flex-col md:flex-row md:items-center justify-between gap-8 border border-black/10 dark:border-white/10">
         <div>
           <p className="text-xs tracking-[0.3em] uppercase text-white/40 mb-3">Punya Ide Proyek?</p>
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight">
             Mari Kolaborasi<br />Dan Wujudkan!
           </h2>
         </div>
         <Link
           href="/contact"
-          className="shrink-0 group inline-flex items-center gap-3 border border-night-bordeaux-400 text-night-bordeaux-400 px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-400 hover:text-black transition-all duration-300"
+          className="w-full sm:w-auto justify-center md:shrink-0 group inline-flex items-center gap-3 border border-night-bordeaux-400 text-night-bordeaux-400 px-6 sm:px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-400 hover:text-black transition-all duration-300"
         >
           Mulai Sekarang <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
         </Link>

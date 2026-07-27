@@ -56,7 +56,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-2">
           <span className="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none select-none text-black dark:text-white">
@@ -135,7 +135,7 @@ export default function Navbar() {
           menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         } bg-white dark:bg-black border-t border-black/10 dark:border-white/10`}
       >
-        <nav className="flex flex-col px-6 py-4 gap-5">
+        <nav className="flex flex-col px-5 sm:px-6 py-4 gap-5">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (

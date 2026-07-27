@@ -38,7 +38,7 @@ export default function ContactPage() {
     },
     {
       label: "LinkedIn",
-      value: "linkedin.com/in/ilhammaulana",
+      value: "linkedin.com/in/ilhamddy",
       href: personal.socials.find((s) => s.label === "LinkedIn")?.href || "#",
       desc: "Koneksi profesional",
     },
@@ -78,7 +78,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* PAGE HEADER */}
-      <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
+      <section className="pt-28 sm:pt-32 pb-12 md:pb-16 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
         <div className="flex items-center gap-3 mb-6">
           <span className="w-8 h-px bg-black dark:bg-white" />
           <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 font-bold">
@@ -86,7 +86,7 @@ export default function ContactPage() {
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <h1 className="text-[clamp(3rem,8vw,7rem)] font-black uppercase tracking-tighter leading-[0.9]">
+          <h1 className="text-[clamp(2.6rem,13vw,7rem)] font-black uppercase tracking-tighter leading-[0.9]">
             <SplitText text="MARI" delay={0.05} />
             <br />
             <span className="text-stroke">BICARA</span>
@@ -98,7 +98,7 @@ export default function ContactPage() {
       </section>
 
       {/* MAIN CONTENT */}
-      <section className="py-20 px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-16 xl:gap-24 items-start">
+      <section className="py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_420px] gap-12 lg:gap-16 xl:gap-24 items-start">
         {/* LEFT: FORM */}
         <div>
           {!submitted ? (
@@ -131,7 +131,7 @@ export default function ContactPage() {
                 </div>
 
                 <div
-                  className={`border border-black/15 dark:border-white/15 border-l-0 sm:border-l-0 relative transition-all duration-300 ${
+                  className={`border border-black/15 dark:border-white/15 sm:border-l-0 relative transition-all duration-300 ${
                     focused === "email" ? "border-night-bordeaux-600 dark:border-dark-cyan-400 sm:border-l" : ""
                   }`}
                 >
@@ -183,7 +183,7 @@ export default function ContactPage() {
                 </div>
 
                 <div
-                  className={`border border-black/15 dark:border-white/15 border-l-0 sm:border-l-0 relative transition-all duration-300 ${
+                  className={`border border-black/15 dark:border-white/15 sm:border-l-0 relative transition-all duration-300 ${
                     focused === "budget" ? "border-night-bordeaux-600 dark:border-dark-cyan-400 sm:border-l" : ""
                   }`}
                 >
@@ -237,7 +237,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="group mt-0 border border-night-bordeaux-600 dark:border-dark-cyan-500 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black px-10 py-5 text-sm tracking-widest uppercase font-bold hover:bg-transparent dark:hover:bg-transparent hover:text-night-bordeaux-600 dark:hover:text-dark-cyan-500 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
+                className="group mt-0 border border-night-bordeaux-600 dark:border-dark-cyan-500 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black px-6 sm:px-10 py-5 text-sm tracking-widest uppercase font-bold hover:bg-transparent dark:hover:bg-transparent hover:text-night-bordeaux-600 dark:hover:text-dark-cyan-500 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
               >
                 {loading ? (
                   <>
@@ -254,12 +254,12 @@ export default function ContactPage() {
             </form>
           ) : (
             /* SUCCESS STATE */
-            <div className="border border-black/15 dark:border-white/15 p-16 text-center flex flex-col items-center gap-6">
+            <div className="border border-black/15 dark:border-white/15 p-8 sm:p-12 md:p-16 text-center flex flex-col items-center gap-6">
               <div className="w-16 h-16 bg-night-bordeaux-600 dark:bg-dark-cyan-500 flex items-center justify-center">
                 <Check size={28} className="text-white dark:text-black" />
               </div>
               <div>
-                <h2 className="text-3xl font-black uppercase tracking-tight mb-3">Pesan Terkirim!</h2>
+                <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight mb-3">Pesan Terkirim!</h2>
                 <p className="text-black/55 dark:text-white/55 leading-relaxed max-w-sm mx-auto font-medium">
                   Terima kasih, <strong className="text-black dark:text-white">{form.name}</strong>. Saya akan membalas email kamu dalam 24 jam ke depan.
                 </p>
@@ -290,13 +290,13 @@ export default function ContactPage() {
                   href={info.href}
                   target={info.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className="group bg-white dark:bg-black p-6 flex items-center justify-between hover:bg-night-bordeaux-600 hover:text-white dark:hover:bg-dark-cyan-500 dark:hover:text-black border border-black/5 dark:border-white/5 transition-all duration-300"
+                  className="group bg-white dark:bg-black p-5 sm:p-6 flex items-center justify-between gap-4 hover:bg-night-bordeaux-600 hover:text-white dark:hover:bg-dark-cyan-500 dark:hover:text-black border border-black/5 dark:border-white/5 transition-all duration-300"
                 >
                   <div>
                     <span className="text-[10px] tracking-[0.3em] uppercase text-black/35 dark:text-white/35 group-hover:text-white/45 dark:group-hover:text-black/45 block mb-1 font-bold">
                       {info.label}
                     </span>
-                    <span className="text-sm font-black">{info.value}</span>
+                    <span className="text-sm font-black break-all">{info.value}</span>
                     <span className="block text-xs text-black/40 dark:text-white/40 group-hover:text-white/45 dark:group-hover:text-black/45 mt-0.5 font-medium">
                       {info.desc}
                     </span>
@@ -309,7 +309,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="border border-black/15 dark:border-white/15 p-6 bg-white dark:bg-zinc-950">
+          <div className="border border-black/15 dark:border-white/15 p-5 sm:p-6 bg-white dark:bg-zinc-950">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2.5 h-2.5 bg-night-bordeaux-500 rounded-full animate-pulse" />
               <span className="text-xs tracking-widest uppercase font-bold">
@@ -321,7 +321,7 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="bg-black text-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 p-6">
+          <div className="bg-black text-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 p-5 sm:p-6">
             <p className="text-[10px] tracking-[0.3em] uppercase text-white/40 dark:text-white/40 mb-2 font-bold">
               Waktu Respons
             </p>

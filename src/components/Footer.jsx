@@ -33,7 +33,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <h4 className="text-[10px] tracking-[0.28em] uppercase text-black/40 dark:text-white/40 font-bold mb-4">
                 Menu

@@ -20,7 +20,7 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* PAGE HEADER */}
-      <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
+      <section className="pt-28 sm:pt-32 pb-12 md:pb-16 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
         <div className="flex items-center gap-3 mb-6">
           <span className="w-8 h-px bg-black dark:bg-white" />
           <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 font-bold">
@@ -28,7 +28,7 @@ export default function ServicesPage() {
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <h1 className="text-[clamp(3rem,8vw,7rem)] font-black uppercase tracking-tighter leading-[0.9]">
+          <h1 className="text-[clamp(2.45rem,12vw,7rem)] font-black uppercase tracking-tighter leading-[0.9]">
             <SplitText text="APA YANG" delay={0.05} />
             <br />
             <span className="text-stroke">SAYA BISA</span>
@@ -40,19 +40,19 @@ export default function ServicesPage() {
       </section>
 
       {/* SERVICES — ACCORDION STYLE */}
-      <section className="relative z-10 py-20 px-6 md:px-12 max-w-7xl mx-auto">
+      <section className="relative z-10 py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto">
         <div className="flex flex-col divide-y divide-black/10 dark:divide-white/10 border-t border-black/10 dark:border-white/10">
           {services.map((svc, i) => (
             <div key={i} className="group">
               <button
                 onClick={() => setActiveService(activeService === i ? -1 : i)}
-                className="w-full flex items-center justify-between py-8 text-left cursor-pointer"
+                className="w-full flex items-start sm:items-center justify-between gap-4 py-6 md:py-8 text-left cursor-pointer"
               >
                 <div className="flex items-center gap-6 md:gap-10">
                   <span className="text-xs tracking-[0.3em] text-black/30 dark:text-white/30 font-mono hidden sm:block">
                     {svc.no}
                   </span>
-                  <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">{svc.title}</h2>
+                  <h2 className="text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-tight leading-tight">{svc.title}</h2>
                 </div>
                 <Plus
                   size={28}
@@ -64,7 +64,7 @@ export default function ServicesPage() {
                   activeService === i ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="pb-10 grid grid-cols-1 md:grid-cols-2 gap-10 pl-0 md:pl-24">
+                <div className="pb-8 md:pb-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 pl-0 md:pl-24">
                   <p className="text-black/60 dark:text-white/60 leading-relaxed font-medium">{svc.desc}</p>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {svc.features.map((f) => (
@@ -82,18 +82,18 @@ export default function ServicesPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="relative z-10 py-20 px-6 md:px-12 max-w-7xl mx-auto border-t border-black/10 dark:border-white/10">
+      <section className="relative z-10 py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-black/10 dark:border-white/10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Proses Kerja</h2>
           <p className="max-w-xs text-sm text-black/50 dark:text-white/50 leading-relaxed font-medium">
             Pendekatan sistematis yang memastikan proyek selesai tepat waktu dan sesuai ekspektasi.
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-black/10 dark:bg-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-black/10 dark:bg-white/10">
           {process.map((p, i) => (
             <SpotlightCard
               key={i}
-              className="bg-white dark:bg-black p-6 group hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 h-full border border-black/5 dark:border-white/5"
+              className="bg-white dark:bg-black p-5 md:p-6 group hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 h-full border border-black/5 dark:border-white/5"
             >
               <span className="text-xs text-black/30 dark:text-white/30 font-mono group-hover:text-white/30 dark:group-hover:text-black/30 mb-4 block">
                 {p.step}
@@ -108,17 +108,17 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="mx-6 md:mx-12 mb-20 bg-black text-white dark:bg-zinc-900 p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-8 border border-black/10 dark:border-white/10">
+      <section className="mx-5 sm:mx-6 md:mx-12 mb-16 md:mb-20 bg-black text-white dark:bg-zinc-900 p-7 sm:p-10 md:p-20 flex flex-col md:flex-row md:items-center justify-between gap-8 border border-black/10 dark:border-white/10">
         <div>
           <p className="text-xs tracking-[0.3em] uppercase text-white/40 mb-3">Siap mulai?</p>
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight">
             Diskusikan<br />
             Proyek Anda
           </h2>
         </div>
         <Link
           href="/contact"
-          className="shrink-0 group inline-flex items-center gap-3 border border-night-bordeaux-400 text-night-bordeaux-400 px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-400 hover:text-black transition-all duration-300"
+          className="w-full sm:w-auto justify-center md:shrink-0 group inline-flex items-center gap-3 border border-night-bordeaux-400 text-night-bordeaux-400 px-6 sm:px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-400 hover:text-black transition-all duration-300"
         >
           Konsultasi Gratis <span className="group-hover:translate-x-1 transition-transform">→</span>
         </Link>

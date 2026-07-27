@@ -36,7 +36,7 @@ export default function PortfolioPage() {
       <Navbar />
 
       {/* PAGE HEADER */}
-      <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
+      <section className="pt-28 sm:pt-32 pb-12 md:pb-16 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
         <div className="flex items-center gap-3 mb-6">
           <span className="w-8 h-px bg-black dark:bg-white" />
           <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 font-bold">
@@ -44,7 +44,7 @@ export default function PortfolioPage() {
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <h1 className="text-[clamp(3rem,8vw,7rem)] font-black uppercase tracking-tighter leading-[0.9]">
+          <h1 className="text-[clamp(2.6rem,13vw,7rem)] font-black uppercase tracking-tighter leading-[0.9]">
             <SplitText text="KARYA" delay={0.05} />
             <br />
             <span className="text-stroke">TERBAIK</span>
@@ -56,12 +56,12 @@ export default function PortfolioPage() {
       </section>
 
       {/* FILTER */}
-      <section className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto py-8 flex flex-wrap gap-2 border-b border-black/10 dark:border-white/10">
+      <section className="relative z-10 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto py-6 md:py-8 flex gap-2 overflow-x-auto sm:flex-wrap border-b border-black/10 dark:border-white/10">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-5 py-2 text-xs tracking-widest uppercase font-bold transition-all duration-200 cursor-pointer ${
+            className={`shrink-0 px-4 sm:px-5 py-2 text-xs tracking-widest uppercase font-bold transition-all duration-200 cursor-pointer ${
               activeCategory === cat
                 ? "bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black"
                 : "border border-night-bordeaux-600/20 text-night-bordeaux-600/60 dark:border-dark-cyan-400/20 dark:text-dark-cyan-400/60 hover:border-night-bordeaux-600 dark:hover:border-dark-cyan-400 hover:text-night-bordeaux-600 dark:hover:text-dark-cyan-400"
@@ -73,12 +73,12 @@ export default function PortfolioPage() {
       </section>
 
       {/* PROJECTS GRID */}
-      <section className="relative z-10 py-12 px-6 md:px-12 max-w-7xl mx-auto">
+      <section className="relative z-10 py-10 md:py-12 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filtered.map((project) => (
             <SpotlightCard
               key={project.id}
-              className={`group relative p-10 md:p-14 min-h-[260px] flex flex-col justify-between overflow-hidden cursor-pointer hover:scale-[1.005] border border-black/10 dark:border-white/10 ${project.color} ${
+              className={`group relative p-7 md:p-14 min-h-[250px] md:min-h-[260px] flex flex-col justify-between overflow-hidden cursor-pointer hover:scale-[1.005] border border-black/10 dark:border-white/10 ${project.color} ${
                 project.size === "large" ? "md:col-span-2" : ""
               }`}
             >
@@ -93,7 +93,7 @@ export default function PortfolioPage() {
                   <p className="text-xs tracking-widest uppercase opacity-55 mb-2">{project.client}</p>
                   <h3
                     className={`font-black uppercase tracking-tight leading-tight mb-3 ${
-                      project.size === "large" ? "text-3xl md:text-5xl" : "text-2xl md:text-3xl"
+                      project.size === "large" ? "text-2xl sm:text-3xl md:text-5xl" : "text-2xl md:text-3xl"
                     }`}
                   >
                     {project.title}
@@ -123,11 +123,11 @@ export default function PortfolioPage() {
       {/* MODAL */}
       {selected && (
         <div
-          className="fixed inset-0 z-50 bg-black/60 dark:bg-black/85 backdrop-blur-sm flex items-center justify-center p-6"
+          className="fixed inset-0 z-50 bg-black/60 dark:bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
           onClick={() => setSelected(null)}
         >
           <div
-            className="bg-white dark:bg-zinc-950 max-w-lg w-full p-10 relative border border-black/10 dark:border-white/10"
+            className="bg-white dark:bg-zinc-950 max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 relative border border-black/10 dark:border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -139,7 +139,7 @@ export default function PortfolioPage() {
             <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 mb-2 block font-semibold">
               {selected.category} · {selected.year}
             </span>
-            <h2 className="text-3xl font-black uppercase tracking-tight mb-2">{selected.title}</h2>
+            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight mb-2">{selected.title}</h2>
             <p className="text-xs tracking-widest uppercase text-black/40 dark:text-white/40 mb-6 font-semibold">
               {selected.client}
             </p>
@@ -156,7 +156,7 @@ export default function PortfolioPage() {
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black px-6 py-3 text-xs tracking-widest uppercase font-bold hover:bg-night-bordeaux-700 dark:hover:bg-dark-cyan-400 transition-colors duration-300"
+              className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black px-5 sm:px-6 py-3 text-xs tracking-widest uppercase font-bold hover:bg-night-bordeaux-700 dark:hover:bg-dark-cyan-400 transition-colors duration-300"
             >
               Diskusikan Proyek Serupa →
             </Link>
@@ -165,17 +165,17 @@ export default function PortfolioPage() {
       )}
 
       {/* CTA */}
-      <section className="mx-6 md:mx-12 mb-20 bg-black text-white dark:bg-zinc-900 p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-8 border border-black/10 dark:border-white/10">
+      <section className="mx-5 sm:mx-6 md:mx-12 mb-16 md:mb-20 bg-black text-white dark:bg-zinc-900 p-7 sm:p-10 md:p-20 flex flex-col md:flex-row md:items-center justify-between gap-8 border border-black/10 dark:border-white/10">
         <div>
           <p className="text-xs tracking-[0.3em] uppercase text-white/40 mb-3">Punya ide?</p>
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight">
             Wujudkan<br />
             Proyek Anda
           </h2>
         </div>
         <Link
           href="/contact"
-          className="shrink-0 group inline-flex items-center gap-3 border border-night-bordeaux-400 text-night-bordeaux-400 px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-400 hover:text-black transition-all duration-300"
+          className="w-full sm:w-auto justify-center md:shrink-0 group inline-flex items-center gap-3 border border-night-bordeaux-400 text-night-bordeaux-400 px-6 sm:px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-400 hover:text-black transition-all duration-300"
         >
           Mulai Sekarang <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
         </Link>
