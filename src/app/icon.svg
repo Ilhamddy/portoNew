@@ -1,0 +1,29 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="28" fill="#ffffff"/>
+  <path d="M21 14C27 20 35 24 46 25C54 26 60 28 65 33C70 38 72 45 72 54V75C72 91 84 101 99 101C114 101 125 91 125 75V14C119 22 111 26 99 27C84 28 78 38 78 54V73C78 84 70 93 59 93C48 93 40 84 40 73V34C40 24 33 18 21 14Z" fill="url(#creamFold)"/>
+  <path d="M22 59C29 65 38 68 49 69C64 70 72 80 72 96V113C65 116 57 118 49 118C34 118 22 106 22 91V59Z" fill="url(#redLeft)"/>
+  <path d="M72 14C78 20 86 24 97 25C116 26 125 38 125 57V91C125 106 113 118 98 118H49C64 118 78 107 78 91V54C78 37 56 30 72 14Z" fill="url(#redRight)"/>
+  <path d="M33 70C49 74 60 84 67 99C58 114 36 117 27 101C22 92 22 77 22 59C25 64 29 67 33 70Z" fill="#8d160f" opacity="0.95"/>
+  <path d="M78 91C86 86 94 78 101 67C106 83 114 94 124 101C120 111 110 118 98 118H50C62 116 72 105 78 91Z" fill="#a51c12" opacity="0.9"/>
+  <path d="M94 26C108 26 118 21 125 14V59C116 64 106 71 96 82C92 70 89 58 89 47C89 38 91 31 94 26Z" fill="#7f130f" opacity="0.72"/>
+  <path d="M21 14C27 20 35 24 46 25C54 26 60 28 65 33C56 39 47 47 39 58C33 55 27 51 21 45V14Z" fill="#f7e8ca" opacity="0.9"/>
+  <path d="M23 58C32 64 42 68 54 69C65 70 72 81 72 96C67 86 58 78 45 74C36 71 28 66 23 58Z" fill="#c43420" opacity="0.55"/>
+  <path d="M78 91C88 87 96 78 103 65C107 81 114 93 124 101" stroke="#e7bfa7" stroke-opacity="0.36" stroke-width="1.2"/>
+  <path d="M22 59C34 62 48 70 58 80C63 85 67 91 72 96" stroke="#e7bfa7" stroke-opacity="0.32" stroke-width="1.2"/>
+  <defs>
+    <linearGradient id="creamFold" x1="18" y1="12" x2="90" y2="101" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f4ddb3"/>
+      <stop offset="0.62" stop-color="#fff7ea"/>
+      <stop offset="1" stop-color="#efd7a8"/>
+    </linearGradient>
+    <linearGradient id="redLeft" x1="22" y1="59" x2="77" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b42014"/>
+      <stop offset="1" stop-color="#6f100f"/>
+    </linearGradient>
+    <linearGradient id="redRight" x1="68" y1="14" x2="122" y2="119" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#78100f"/>
+      <stop offset="0.45" stop-color="#b82915"/>
+      <stop offset="1" stop-color="#8b140e"/>
+    </linearGradient>
+  </defs>
+</svg>
