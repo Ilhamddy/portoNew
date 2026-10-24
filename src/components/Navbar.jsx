@@ -1,120 +1,109 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, ArrowUpRight } from "lucide-react";
 import InlineEdit from "@/components/admin/InlineEdit";
 import { usePortfolioStore } from "@/lib/portfolioStore";
+
+function subscribeTheme(callback) {
+  const observer = new MutationObserver(callback);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  return () => observer.disconnect();
+}
+
+function getThemeSnapshot() {
+  return document.documentElement.classList.contains("dark");
+}
+
+function getThemeServerSnapshot() {
+  return false;
+}
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const darkMode = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getThemeServerSnapshot);
   const pathname = usePathname();
   const { config, updatePersonal } = usePortfolioStore();
   const { personal, navLinks } = config;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const isDark =
-      localStorage.getItem("theme") === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    queueMicrotask(() => setDarkMode(isDark));
   }, []);
 
   const toggleDarkMode = () => {
     if (darkMode) {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
-      setDarkMode(false);
     } else {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
-      setDarkMode(true);
     }
   };
 
-  useEffect(() => {
-    queueMicrotask(() => setMenuOpen(false));
-  }, [pathname]);
-
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-black/10 dark:border-white/10"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
+          ? "bg-[var(--background)]/85 backdrop-blur-md border-b border-[var(--border-subtle)] shadow-[0_4px_24px_rgba(0,0,0,0.03)]"
           : "bg-transparent"
-      }`}
+        }`}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
-        {/* Logo */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 flex items-center justify-between h-16 md:h-20">
+        {/* Tiimo-style bold lowercase wordmark */}
         <Link href="/" className="group flex items-center gap-2">
-          <span className="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none select-none text-black dark:text-white">
+          <span className="text-2xl md:text-3xl font-black tracking-tight text-[var(--foreground)] group-hover:opacity-80 transition-opacity lowercase">
             <InlineEdit
-              value={personal.initials}
-              onSave={(value) => updatePersonal("initials", value)}
-            />
-          </span>
-          <span className="hidden sm:block w-px h-5 bg-black/40 dark:bg-white/40" />
-          <span className="hidden sm:block text-xs tracking-[0.25em] uppercase text-black/60 dark:text-white/60 font-medium">
-            <InlineEdit
-              value={personal.name}
+              value={personal.name || "ilhamddy"}
               onSave={(value) => updatePersonal("name", value)}
             />
           </span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-sage)] self-end mb-1" />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Desktop Nav - Centered Tiimo Style */}
+        <nav className="hidden md:flex items-center gap-7 lg:gap-9">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm tracking-widest uppercase font-semibold transition-colors duration-200 relative group ${
-                  isActive
-                    ? "text-night-bordeaux-600 dark:text-dark-cyan-400"
-                    : "text-black/50 dark:text-white/50 hover:text-night-bordeaux-600 dark:hover:text-dark-cyan-400"
-                }`}
+                className={`text-xs tracking-wider font-semibold transition-all duration-200 relative py-1 ${isActive
+                    ? "text-[var(--foreground)] font-bold"
+                    : "text-[var(--foreground)]/65 hover:text-[var(--foreground)]"
+                  }`}
               >
                 {link.label}
-                <span
-                  className={`absolute -bottom-1 left-0 h-px bg-night-bordeaux-600 dark:bg-dark-cyan-400 transition-all duration-300 ${
-                    isActive ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
+                {isActive && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[var(--foreground)]" />
+                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Action Buttons */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Action Buttons - Pill style with circular arrow */}
+        <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleDarkMode}
-            className="p-2 border border-black/15 dark:border-white/15 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200 text-black dark:text-white cursor-pointer"
+            className="p-2 rounded-full border border-[var(--border-subtle)] bg-[var(--card-bg)] hover:bg-[var(--foreground)]/10 transition-colors text-[var(--foreground)] cursor-pointer"
             aria-label="Toggle dark mode"
           >
-            {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+            {darkMode ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} />}
           </button>
+
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black text-xs tracking-widest uppercase px-5 py-2.5 font-bold hover:bg-night-bordeaux-700 dark:hover:bg-dark-cyan-400 transition-colors duration-200"
+            className="group inline-flex items-center gap-2.5 bg-[var(--primary)] text-[var(--primary-fg)] hover:bg-[var(--primary-hover)] text-xs tracking-wide px-5 py-2.5 rounded-full font-semibold transition-all duration-300 shadow-sm"
           >
-            Hire Me
+            <span>Hubungi Saya</span>
+            <span className="w-5 h-5 rounded-full bg-white/20 dark:bg-black/20 flex items-center justify-center transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <ArrowUpRight size={12} />
+            </span>
           </Link>
         </div>
 
@@ -122,49 +111,51 @@ export default function Navbar() {
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={toggleDarkMode}
-            className="p-2 border border-black/15 dark:border-white/15 text-black dark:text-white"
+            className="p-2 rounded-full border border-[var(--border-subtle)] text-[var(--foreground)]"
             aria-label="Toggle dark mode"
           >
-            {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+            {darkMode ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} />}
           </button>
           <button
-            className="p-2 text-black dark:text-white"
+            className="p-2 text-[var(--foreground)] cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-500 ${
-          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        } bg-white dark:bg-black border-t border-black/10 dark:border-white/10`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ${menuOpen ? "max-h-96 opacity-100 border-b border-[var(--border-subtle)] shadow-xl" : "max-h-0 opacity-0 pointer-events-none"
+          } bg-[var(--background)]/95 backdrop-blur-xl border-t border-[var(--border-subtle)]`}
       >
-        <nav className="flex flex-col px-5 sm:px-6 py-4 gap-5">
+        <nav className="flex flex-col px-6 py-5 gap-3.5">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm tracking-widest uppercase font-bold transition-colors ${
-                  isActive
-                    ? "text-black dark:text-white"
-                    : "text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white"
-                }`}
+                onClick={() => setMenuOpen(false)}
+                className={`text-sm tracking-wider font-semibold transition-colors py-1.5 flex items-center justify-between ${isActive
+                    ? "text-[var(--foreground)] font-bold"
+                    : "text-[var(--foreground)]/65 hover:text-[var(--foreground)]"
+                  }`}
               >
-                {link.label}
+                <span>{link.label}</span>
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[var(--foreground)]" />}
               </Link>
             );
           })}
           <Link
             href="/contact"
-            className="mt-2 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black text-xs tracking-widest uppercase px-5 py-3 font-bold text-center hover:bg-night-bordeaux-700 dark:hover:bg-dark-cyan-400 transition-colors duration-200"
+            onClick={() => setMenuOpen(false)}
+            className="mt-2 inline-flex items-center justify-center gap-2 bg-[var(--primary)] text-[var(--primary-fg)] text-xs tracking-wide px-5 py-3 rounded-full font-bold transition-colors shadow-sm"
           >
-            Hire Me
+            <span>Hubungi Saya</span>
+            <ArrowUpRight size={14} />
           </Link>
         </nav>
       </div>

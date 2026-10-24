@@ -5,8 +5,8 @@ import React, { useRef, useState } from "react";
 export default function SpotlightCard({
   children,
   className = "",
-  spotlightColor = "rgba(12, 24, 17, 0.04)",
-  darkSpotlightColor = "rgba(238, 247, 242, 0.05)",
+  spotlightColor = "rgba(176, 28, 52, 0.09)",
+  darkSpotlightColor = "rgba(78, 179, 188, 0.15)",
 }) {
   const divRef = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -31,7 +31,7 @@ export default function SpotlightCard({
         className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 dark:hidden"
         style={{
           opacity,
-          background: `radial-gradient(350px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 85%)`,
+          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, var(--spotlight, ${spotlightColor}), transparent 80%)`,
         }}
       />
       {/* Dark mode spotlight */}
@@ -39,7 +39,7 @@ export default function SpotlightCard({
         className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 hidden dark:block"
         style={{
           opacity,
-          background: `radial-gradient(350px circle at ${position.x}px ${position.y}px, ${darkSpotlightColor}, transparent 85%)`,
+          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, var(--spotlight, ${darkSpotlightColor}), transparent 80%)`,
         }}
       />
       <div className="relative z-10 h-full w-full">{children}</div>

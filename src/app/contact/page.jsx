@@ -6,11 +6,12 @@ import Footer from "@/components/Footer";
 import SplitText from "@/components/reactbits/SplitText";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import AnimatedBackground from "@/components/reactbits/AnimatedBackground";
-import { usePortfolioConfig } from "@/lib/portfolioStore";
-import { ArrowRight, Check } from "lucide-react";
+import { usePortfolioStore } from "@/lib/portfolioStore";
+import { ArrowRight, Check, Mail, MessageCircle, Clock, Sparkles } from "lucide-react";
 
 export default function ContactPage() {
-  const { personal } = usePortfolioConfig();
+  const { config } = usePortfolioStore();
+  const { personal } = config;
 
   const [form, setForm] = useState({
     name: "",
@@ -21,26 +22,25 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [focused, setFocused] = useState(null);
 
   const contactInfo = [
     {
       label: "Email",
       value: personal.email,
       href: `mailto:${personal.email}`,
-      desc: "Balas dalam 24 jam",
+      desc: "Balas dalam < 24 jam",
     },
     {
       label: "WhatsApp",
       value: personal.phone,
       href: personal.phoneUrl,
-      desc: "Senin – Jumat, 09.00–18.00",
+      desc: "Senin – Jumat, 09.00–18.00 WIB",
     },
     {
       label: "LinkedIn",
       value: "linkedin.com/in/ilhamddy",
-      href: personal.socials.find((s) => s.label === "LinkedIn")?.href || "#",
-      desc: "Koneksi profesional",
+      href: personal.socials.find((s) => s.label === "LinkedIn")?.href || "https://linkedin.com",
+      desc: "Koneksi profesional & jejaring",
     },
   ];
 
@@ -67,21 +67,21 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
+    await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
     setSubmitted(true);
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors duration-300 overflow-x-hidden relative">
+    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden relative">
       <AnimatedBackground />
       <Navbar />
 
       {/* PAGE HEADER */}
-      <section className="pt-28 sm:pt-32 pb-12 md:pb-16 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
+      <section className="pt-28 sm:pt-32 pb-12 md:pb-16 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-b border-[var(--border-subtle)]">
         <div className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px bg-black dark:bg-white" />
-          <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 font-bold">
+          <span className="w-8 h-px bg-[var(--primary)]" />
+          <span className="text-xs tracking-[0.25em] uppercase text-[var(--primary)] font-bold">
             Kontak
           </span>
         </div>
@@ -91,30 +91,29 @@ export default function ContactPage() {
             <br />
             <span className="text-stroke">BICARA</span>
           </h1>
-          <p className="max-w-xs text-black/50 dark:text-white/50 text-sm leading-relaxed md:pb-3 font-medium">
-            Punya proyek atau pertanyaan? Saya siap mendengarkan dan membantu Anda.
+          <p className="max-w-xs text-[var(--foreground)]/60 text-sm leading-relaxed md:pb-3 font-medium">
+            Punya ide proyek atau butuh konsultasi teknis? Saya siap mendengarkan dan mendiskusikan solusi terbaik.
           </p>
         </div>
       </section>
 
       {/* MAIN CONTENT */}
-      <section className="py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_420px] gap-12 lg:gap-16 xl:gap-24 items-start">
+      <section className="py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_420px] gap-12 lg:gap-16 xl:gap-20 items-start">
         {/* LEFT: FORM */}
-        <div>
+        <div className="p-6 sm:p-10 rounded-2xl border border-[var(--border-subtle)] bg-[var(--card-bg)]/80 backdrop-blur-md shadow-sm">
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-0">
-              <p className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 mb-10 font-bold">
-                Isi formulir di bawah ini
-              </p>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              <div>
+                <span className="text-xs tracking-[0.25em] uppercase text-[var(--primary)] font-bold block mb-1">
+                  Kirim Pesan
+                </span>
+                <h2 className="text-2xl font-black uppercase tracking-tight">Formulir Diskusi Proyek</h2>
+              </div>
 
               {/* Row: Name + Email */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
-                <div
-                  className={`border border-black/15 dark:border-white/15 relative transition-all duration-300 ${
-                    focused === "name" ? "border-night-bordeaux-600 dark:border-dark-cyan-400" : ""
-                  }`}
-                >
-                  <label className="absolute top-4 left-5 text-[10px] tracking-[0.3em] uppercase text-black/35 dark:text-white/35 font-bold pointer-events-none">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-bold uppercase tracking-wider text-[var(--foreground)]/60 block mb-2">
                     Nama Lengkap *
                   </label>
                   <input
@@ -123,19 +122,13 @@ export default function ContactPage() {
                     required
                     value={form.name}
                     onChange={handleChange}
-                    onFocus={() => setFocused("name")}
-                    onBlur={() => setFocused(null)}
-                    className="w-full pt-10 pb-5 px-5 bg-transparent text-sm font-semibold outline-none placeholder:text-black/25 dark:placeholder:text-white/25"
-                    placeholder="Nama kamu"
+                    className="w-full px-4 py-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--background)] text-sm font-semibold outline-none focus:border-[var(--primary)] transition-colors placeholder:text-[var(--foreground)]/30"
+                    placeholder="Nama Anda"
                   />
                 </div>
 
-                <div
-                  className={`border border-black/15 dark:border-white/15 sm:border-l-0 relative transition-all duration-300 ${
-                    focused === "email" ? "border-night-bordeaux-600 dark:border-dark-cyan-400 sm:border-l" : ""
-                  }`}
-                >
-                  <label className="absolute top-4 left-5 text-[10px] tracking-[0.3em] uppercase text-black/35 dark:text-white/35 font-bold pointer-events-none">
+                <div>
+                  <label className="text-xs font-bold uppercase tracking-wider text-[var(--foreground)]/60 block mb-2">
                     Email *
                   </label>
                   <input
@@ -144,31 +137,23 @@ export default function ContactPage() {
                     required
                     value={form.email}
                     onChange={handleChange}
-                    onFocus={() => setFocused("email")}
-                    onBlur={() => setFocused(null)}
-                    className="w-full pt-10 pb-5 px-5 bg-transparent text-sm font-semibold outline-none placeholder:text-black/25 dark:placeholder:text-white/25"
-                    placeholder="email@kamu.com"
+                    className="w-full px-4 py-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--background)] text-sm font-semibold outline-none focus:border-[var(--primary)] transition-colors placeholder:text-[var(--foreground)]/30"
+                    placeholder="nama@perusahaan.com"
                   />
                 </div>
               </div>
 
               {/* Row: Service + Budget */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 -mt-px">
-                <div
-                  className={`border border-black/15 dark:border-white/15 relative transition-all duration-300 ${
-                    focused === "service" ? "border-night-bordeaux-600 dark:border-dark-cyan-400" : ""
-                  }`}
-                >
-                  <label className="absolute top-4 left-5 text-[10px] tracking-[0.3em] uppercase text-black/35 dark:text-white/35 font-bold pointer-events-none z-10">
-                    Layanan yang Dibutuhkan
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-bold uppercase tracking-wider text-[var(--foreground)]/60 block mb-2">
+                    Layanan Dibutuhkan
                   </label>
                   <select
                     name="service"
                     value={form.service}
                     onChange={handleChange}
-                    onFocus={() => setFocused("service")}
-                    onBlur={() => setFocused(null)}
-                    className="w-full pt-10 pb-5 px-5 bg-white dark:bg-zinc-950 text-sm font-semibold outline-none appearance-none cursor-pointer text-black/70 dark:text-white/70"
+                    className="w-full px-4 py-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--background)] text-sm font-semibold outline-none focus:border-[var(--primary)] transition-colors cursor-pointer text-[var(--foreground)]"
                   >
                     <option value="">Pilih layanan...</option>
                     {services.map((s) => (
@@ -177,59 +162,41 @@ export default function ContactPage() {
                       </option>
                     ))}
                   </select>
-                  <span className="absolute right-5 top-1/2 -translate-y-1/2 text-black/30 dark:text-white/30 pointer-events-none text-xs">
-                    ▾
-                  </span>
                 </div>
 
-                <div
-                  className={`border border-black/15 dark:border-white/15 sm:border-l-0 relative transition-all duration-300 ${
-                    focused === "budget" ? "border-night-bordeaux-600 dark:border-dark-cyan-400 sm:border-l" : ""
-                  }`}
-                >
-                  <label className="absolute top-4 left-5 text-[10px] tracking-[0.3em] uppercase text-black/35 dark:text-white/35 font-bold pointer-events-none z-10">
+                <div>
+                  <label className="text-xs font-bold uppercase tracking-wider text-[var(--foreground)]/60 block mb-2">
                     Estimasi Budget
                   </label>
                   <select
                     name="budget"
                     value={form.budget}
                     onChange={handleChange}
-                    onFocus={() => setFocused("budget")}
-                    onBlur={() => setFocused(null)}
-                    className="w-full pt-10 pb-5 px-5 bg-white dark:bg-zinc-950 text-sm font-semibold outline-none appearance-none cursor-pointer text-black/70 dark:text-white/70"
+                    className="w-full px-4 py-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--background)] text-sm font-semibold outline-none focus:border-[var(--primary)] transition-colors cursor-pointer text-[var(--foreground)]"
                   >
-                    <option value="">Pilih range...</option>
+                    <option value="">Pilih rentang...</option>
                     {budgets.map((b) => (
                       <option key={b} value={b}>
                         {b}
                       </option>
                     ))}
                   </select>
-                  <span className="absolute right-5 top-1/2 -translate-y-1/2 text-black/30 dark:text-white/30 pointer-events-none text-xs">
-                    ▾
-                  </span>
                 </div>
               </div>
 
               {/* Message */}
-              <div
-                className={`border border-black/15 dark:border-white/15 -mt-px relative transition-all duration-300 ${
-                  focused === "message" ? "border-night-bordeaux-600 dark:border-dark-cyan-400" : ""
-                }`}
-              >
-                <label className="absolute top-4 left-5 text-[10px] tracking-[0.3em] uppercase text-black/35 dark:text-white/35 font-bold pointer-events-none">
-                  Pesan *
+              <div>
+                <label className="text-xs font-bold uppercase tracking-wider text-[var(--foreground)]/60 block mb-2">
+                  Pesan atau Detail Kebutuhan *
                 </label>
                 <textarea
                   name="message"
                   required
-                  rows={6}
+                  rows={5}
                   value={form.message}
                   onChange={handleChange}
-                  onFocus={() => setFocused("message")}
-                  onBlur={() => setFocused(null)}
-                  className="w-full pt-10 pb-5 px-5 bg-transparent text-sm font-semibold outline-none resize-none placeholder:text-black/25 dark:placeholder:text-white/25"
-                  placeholder="Ceritakan proyek atau pertanyaan kamu..."
+                  className="w-full px-4 py-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--background)] text-sm font-semibold outline-none focus:border-[var(--primary)] transition-colors resize-none placeholder:text-[var(--foreground)]/30"
+                  placeholder="Ceritakan gambaran singkat proyek atau kebutuhan teknologi Anda..."
                 />
               </div>
 
@@ -237,31 +204,31 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="group mt-0 border border-night-bordeaux-600 dark:border-dark-cyan-500 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black px-6 sm:px-10 py-5 text-sm tracking-widest uppercase font-bold hover:bg-transparent dark:hover:bg-transparent hover:text-night-bordeaux-600 dark:hover:text-dark-cyan-500 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[var(--primary)] text-[var(--primary-fg)] hover:bg-[var(--primary-hover)] px-8 py-4 text-xs tracking-widest uppercase font-bold transition-all shadow-md hover:shadow-lg disabled:opacity-50 cursor-pointer"
               >
                 {loading ? (
                   <>
-                    <span className="w-4 h-4 border-2 border-white/30 dark:border-black/30 border-t-white dark:border-t-black rounded-full animate-spin" />
+                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     Mengirim...
                   </>
                 ) : (
                   <>
                     Kirim Pesan
-                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                    <ArrowRight size={15} />
                   </>
                 )}
               </button>
             </form>
           ) : (
             /* SUCCESS STATE */
-            <div className="border border-black/15 dark:border-white/15 p-8 sm:p-12 md:p-16 text-center flex flex-col items-center gap-6">
-              <div className="w-16 h-16 bg-night-bordeaux-600 dark:bg-dark-cyan-500 flex items-center justify-center">
-                <Check size={28} className="text-white dark:text-black" />
+            <div className="py-12 px-6 text-center flex flex-col items-center gap-5">
+              <div className="w-16 h-16 rounded-full bg-[var(--primary)]/15 text-[var(--primary)] flex items-center justify-center">
+                <Check size={32} strokeWidth={2.5} />
               </div>
               <div>
-                <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight mb-3">Pesan Terkirim!</h2>
-                <p className="text-black/55 dark:text-white/55 leading-relaxed max-w-sm mx-auto font-medium">
-                  Terima kasih, <strong className="text-black dark:text-white">{form.name}</strong>. Saya akan membalas email kamu dalam 24 jam ke depan.
+                <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight mb-2">Pesan Terkirim!</h2>
+                <p className="text-[var(--foreground)]/65 leading-relaxed max-w-sm mx-auto font-medium text-sm">
+                  Terima kasih, <strong className="text-[var(--foreground)]">{form.name}</strong>. Saya akan meninjau dan membalas email Anda dalam waktu 24 jam.
                 </p>
               </div>
               <button
@@ -269,39 +236,41 @@ export default function ContactPage() {
                   setSubmitted(false);
                   setForm({ name: "", email: "", service: "", budget: "", message: "" });
                 }}
-                className="text-xs tracking-widest uppercase text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white transition-colors underline underline-offset-4 cursor-pointer font-bold"
+                className="mt-2 text-xs tracking-widest uppercase text-[var(--primary)] hover:underline font-bold cursor-pointer"
               >
-                Kirim pesan lain
+                Kirim pesan lain →
               </button>
             </div>
           )}
         </div>
 
-        {/* RIGHT: INFO */}
-        <div className="flex flex-col gap-8 lg:sticky lg:top-28">
+        {/* RIGHT: INFO CARDS */}
+        <div className="flex flex-col gap-6 lg:sticky lg:top-28">
           <div>
-            <p className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 mb-6 font-bold">
-              Atau hubungi langsung
-            </p>
-            <div className="flex flex-col gap-px bg-black/10 dark:bg-white/10">
+            <span className="text-xs tracking-[0.25em] uppercase text-[var(--primary)] font-bold block mb-4">
+              Kontak Langsung
+            </span>
+            <div className="flex flex-col gap-3">
               {contactInfo.map((info) => (
                 <a
                   key={info.label}
                   href={info.href}
                   target={info.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className="group bg-white dark:bg-black p-5 sm:p-6 flex items-center justify-between gap-4 hover:bg-night-bordeaux-600 hover:text-white dark:hover:bg-dark-cyan-500 dark:hover:text-black border border-black/5 dark:border-white/5 transition-all duration-300"
+                  className="group p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--card-bg)]/75 backdrop-blur-sm flex items-center justify-between gap-4 hover:border-[var(--primary)] transition-all shadow-sm"
                 >
                   <div>
-                    <span className="text-[10px] tracking-[0.3em] uppercase text-black/35 dark:text-white/35 group-hover:text-white/45 dark:group-hover:text-black/45 block mb-1 font-bold">
+                    <span className="text-[10px] tracking-widest uppercase text-[var(--primary)] font-bold block mb-1">
                       {info.label}
                     </span>
-                    <span className="text-sm font-black break-all">{info.value}</span>
-                    <span className="block text-xs text-black/40 dark:text-white/40 group-hover:text-white/45 dark:group-hover:text-black/45 mt-0.5 font-medium">
+                    <span className="text-sm font-bold block group-hover:text-[var(--primary)] transition-colors break-all">
+                      {info.value}
+                    </span>
+                    <span className="text-xs text-[var(--foreground)]/50 mt-0.5 block">
                       {info.desc}
                     </span>
                   </div>
-                  <span className="text-black/25 dark:text-white/25 group-hover:text-white/50 dark:group-hover:text-black/50 group-hover:translate-x-1 transition-all">
+                  <span className="p-2 rounded-lg border border-[var(--border-subtle)] text-[var(--foreground)]/40 group-hover:text-[var(--primary)] group-hover:border-[var(--primary)] transition-all">
                     →
                   </span>
                 </a>
@@ -309,26 +278,31 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="border border-black/15 dark:border-white/15 p-5 sm:p-6 bg-white dark:bg-zinc-950">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-2.5 h-2.5 bg-night-bordeaux-500 rounded-full animate-pulse" />
-              <span className="text-xs tracking-widest uppercase font-bold">
+          <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--card-bg)]/60 backdrop-blur-sm">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs tracking-wider uppercase font-bold text-[var(--foreground)]">
                 Tersedia untuk proyek baru
               </span>
             </div>
-            <p className="text-xs text-black/50 dark:text-white/50 leading-relaxed font-medium">
-              Saat ini saya membuka kolaborasi untuk proyek freelance. Hubungi saya sekarang untuk slot terbatas.
+            <p className="text-xs text-[var(--foreground)]/60 leading-relaxed font-medium">
+              Menerima freelance dan konsultasi teknis. Konsultasikan ide Anda untuk mendiskusikan timeline dan roadmap.
             </p>
           </div>
 
-          <div className="bg-black text-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 p-5 sm:p-6">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-white/40 dark:text-white/40 mb-2 font-bold">
-              Waktu Respons
-            </p>
-            <p className="text-3xl font-black mb-1">&lt; 24 Jam</p>
-            <p className="text-xs text-white/50 dark:text-white/50 leading-relaxed font-medium">
-              Saya membalas setiap pesan masuk pada hari kerja. Weekend mungkin sedikit lebih lama.
-            </p>
+          <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--card-bg)]/60 backdrop-blur-sm flex items-start gap-4">
+            <div className="p-3 rounded-lg border border-[var(--border-subtle)] text-[var(--primary)]">
+              <Clock size={20} />
+            </div>
+            <div>
+              <p className="text-xs tracking-widest uppercase font-bold text-[var(--foreground)]/50 mb-1">
+                Waktu Respons
+              </p>
+              <p className="text-2xl font-black">&lt; 24 Jam</p>
+              <p className="text-xs text-[var(--foreground)]/55 mt-1 font-medium">
+                Respon cepat di hari kerja (Senin–Jumat).
+              </p>
+            </div>
           </div>
         </div>
       </section>

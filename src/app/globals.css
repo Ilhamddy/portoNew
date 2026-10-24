@@ -1,26 +1,17 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-syne: var(--font-syne);
-  --font-dm-sans: var(--font-dm-sans);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 
-  /* Light theme uses night bordeaux, dark theme uses dark cyan */
-  --color-black: var(--palette-950);
-  --color-white: var(--surface);
+  /* Primary dynamic tokens */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-card-bg: var(--card-bg);
+  --color-border-subtle: var(--border-subtle);
 
-  /* Map neutral shades used across the app to the active theme palette */
-  --color-zinc-50: var(--surface);
-  --color-zinc-100: var(--palette-100);
-  --color-zinc-200: var(--palette-200);
-  --color-zinc-300: var(--palette-300);
-  --color-zinc-400: var(--palette-400);
-  --color-zinc-500: var(--palette-500);
-  --color-zinc-600: var(--palette-600);
-  --color-zinc-700: var(--palette-700);
-  --color-zinc-800: var(--palette-800);
-  --color-zinc-900: var(--palette-900);
-  --color-zinc-950: var(--palette-950);
-
+  /* Compatibility palette tokens */
   --color-night-bordeaux-50: #fce9ec;
   --color-night-bordeaux-100: #f8d3d9;
   --color-night-bordeaux-200: #f1a7b3;
@@ -44,82 +35,118 @@
   --color-dark-cyan-800: #263d40;
   --color-dark-cyan-900: #131f20;
   --color-dark-cyan-950: #0d1516;
-
 }
 
 @variant dark (&:where(.dark, .dark *));
 
-::selection {
-  background-color: #dd2241;
-  color: #fce9ec;
-}
-
 :root {
-  --surface: #ffffff;
-  --palette-50: #fce9ec;
-  --palette-100: #f8d3d9;
-  --palette-200: #f1a7b3;
-  --palette-300: #ea7b8d;
-  --palette-400: #e34f67;
-  --palette-500: #dd2241;
-  --palette-600: #b01c34;
-  --palette-700: #841527;
-  --palette-800: #580e1a;
-  --palette-900: #2c070d;
-  --palette-950: #1f0509;
-  --background: var(--surface);
-  --foreground: var(--palette-950);
+  --background: #EFF2EA; /* Organic warm sage cream (from Tiimo design) */
+  --foreground: #18231E; /* Deep pine obsidian */
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-solid: #ffffff;
+  --border-subtle: rgba(24, 35, 30, 0.09);
+  --primary: #1C2E24; /* Deep Nordic pine */
+  --primary-hover: #294234;
+  --primary-fg: #F4F6F0;
+  --accent-sage: #38614B;
+  --spotlight: rgba(46, 88, 66, 0.08);
 }
 
 .dark {
-  --surface: #eff5f5;
-  --palette-50: #eff5f5;
-  --palette-100: #dfebec;
-  --palette-200: #bfd6d9;
-  --palette-300: #9fc2c6;
-  --palette-400: #80adb3;
-  --palette-500: #60999f;
-  --palette-600: #4d7a80;
-  --palette-700: #395c60;
-  --palette-800: #263d40;
-  --palette-900: #131f20;
-  --palette-950: #0d1516;
-  --background: var(--palette-950);
-  --foreground: var(--palette-50);
+  --background: #09100D; /* Nocturnal Scandinavian pine forest */
+  --foreground: #EEF4F0;
+  --card-bg: rgba(17, 28, 23, 0.65);
+  --card-solid: #111D17;
+  --border-subtle: rgba(238, 244, 240, 0.09);
+  --primary: #489A74; /* Luminous emerald sage */
+  --primary-hover: #5DB58C;
+  --primary-fg: #06100B;
+  --accent-sage: #81C9A2;
+  --spotlight: rgba(72, 154, 116, 0.14);
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--primary-fg);
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-dm-sans), sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 a, button, input, textarea, select {
   min-width: 0;
 }
 
-h1, h2, h3, h4, h5, h6, nav, button {
-  font-family: var(--font-syne), sans-serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.035em;
 }
 
+/* Editorial italic serif font helper (Instrument Serif) */
+.font-italic-serif {
+  font-family: var(--font-serif), "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  display: inline-block;
+}
+
+/* Elegant Text Stroke with clean responsiveness */
 .text-stroke {
-  -webkit-text-stroke: 2px var(--palette-950);
+  -webkit-text-stroke: 1.75px currentColor;
   color: transparent;
   transition: -webkit-text-stroke 0.3s ease;
-}
-
-.dark .text-stroke {
-  -webkit-text-stroke: 2px #eff5f5;
-  color: transparent;
 }
 
 @media (max-width: 640px) {
   .text-stroke {
     -webkit-text-stroke-width: 1.25px;
   }
+}
+
+/* Tiimo Glassmorphic Panel */
+.tiimo-glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.dark .tiimo-glass {
+  background: rgba(18, 30, 24, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 120, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 120, 120, 0.45);
 }

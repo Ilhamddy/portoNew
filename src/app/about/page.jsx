@@ -5,24 +5,26 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SplitText from "@/components/reactbits/SplitText";
+import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import AnimatedBackground from "@/components/reactbits/AnimatedBackground";
 import InlineEdit from "@/components/admin/InlineEdit";
 import { usePortfolioStore } from "@/lib/portfolioStore";
+import { ArrowRight, CheckCircle2, Briefcase, Calendar } from "lucide-react";
 
 export default function AboutPage() {
   const { config, updatePersonal, updatePersonalList } = usePortfolioStore();
   const { personal, skills, experiences } = config;
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors duration-300 overflow-x-hidden relative">
+    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden relative">
       <AnimatedBackground />
       <Navbar />
 
       {/* PAGE HEADER */}
-      <section className="pt-28 sm:pt-32 pb-12 md:pb-16 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-b border-black/10 dark:border-white/10">
+      <section className="pt-28 sm:pt-32 pb-12 md:pb-16 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-b border-[var(--border-subtle)]">
         <div className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px bg-black dark:bg-white" />
-          <span className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 font-bold">
+          <span className="w-8 h-px bg-[var(--primary)]" />
+          <span className="text-xs tracking-[0.25em] uppercase text-[var(--primary)] font-bold">
             Tentang Saya
           </span>
         </div>
@@ -37,21 +39,22 @@ export default function AboutPage() {
       <section className="py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         {/* Left: Profile visual */}
         <div className="relative">
-          <div className="relative bg-black dark:bg-zinc-900 aspect-[3/4] w-full max-w-xs sm:max-w-sm overflow-hidden border border-black/10 dark:border-white/10">
+          <div className="relative bg-[var(--card-bg)] aspect-[3/4] w-full max-w-xs sm:max-w-sm overflow-hidden rounded-2xl border border-[var(--border-subtle)] shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
             <Image
               src="/profile.jpg"
               alt={personal.name}
               fill
               sizes="(min-width: 1024px) 384px, 100vw"
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-500 hover:scale-[1.02]"
+              priority
             />
-            {/* Decorative corner */}
-            <div className="absolute bottom-0 right-0 w-16 h-16 border-t border-l border-white/20 z-10" />
+            {/* Gradient Overlay at bottom */}
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--background)] to-transparent opacity-60" />
           </div>
-          {/* Offset decorative border */}
-          <div className="absolute -bottom-4 -right-4 w-full max-w-xs sm:max-w-sm h-full border border-black/15 dark:border-white/15 -z-10" />
+
           {/* Availability badge */}
-          <div className="absolute -top-4 right-0 sm:-right-4 bg-black text-white dark:bg-white dark:text-black px-4 py-2 text-xs tracking-widest uppercase font-semibold">
+          <div className="absolute -top-3.5 right-4 sm:-right-2 bg-[var(--primary)] text-[var(--primary-fg)] px-4 py-1.5 rounded-full text-[11px] tracking-wider uppercase font-bold shadow-md flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             {personal.availability}
           </div>
         </div>
@@ -70,7 +73,7 @@ export default function AboutPage() {
                 key={i}
                 as="p"
                 multiline
-                className="text-black/60 dark:text-white/60 leading-relaxed mb-4 font-medium"
+                className="text-[var(--foreground)]/70 leading-relaxed mb-4 font-medium text-base sm:text-lg"
                 value={paragraph}
                 onSave={(value) => updatePersonalList("detailedBio", i, value)}
               />
@@ -78,11 +81,11 @@ export default function AboutPage() {
           </div>
 
           {/* Stats row */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 border-t border-b border-black/10 dark:border-white/10 py-6">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 border-t border-b border-[var(--border-subtle)] py-6">
             {personal.stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-black">{s.num}</div>
-                <div className="text-xs tracking-widest uppercase text-black/40 dark:text-white/40 mt-1 font-bold">
+              <div key={s.label} className="text-center p-3 rounded-xl bg-[var(--card-bg)]/40 border border-[var(--border-subtle)]">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-black text-[var(--primary)]">{s.num}</div>
+                <div className="text-[10px] sm:text-xs tracking-widest uppercase text-[var(--foreground)]/50 mt-1 font-bold">
                   {s.label}
                 </div>
               </div>
@@ -91,59 +94,79 @@ export default function AboutPage() {
 
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-3 bg-night-bordeaux-600 text-white dark:bg-dark-cyan-500 dark:text-black px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-night-bordeaux-700 dark:hover:bg-dark-cyan-400 transition-all duration-300 w-fit"
+            className="group inline-flex items-center gap-3 bg-[var(--primary)] text-[var(--primary-fg)] hover:bg-[var(--primary-hover)] px-8 py-4 text-xs tracking-widest uppercase font-bold transition-all duration-300 w-fit shadow-md hover:shadow-lg"
           >
             Hubungi Saya
-            <span className="transition-transform group-hover:translate-x-1">→</span>
+            <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </section>
 
       {/* SKILLS */}
-      <section className="py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-black/10 dark:border-white/10">
-        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight mb-14">Keahlian</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-black/15 dark:bg-white/15">
+      <section className="py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-[var(--border-subtle)]">
+        <div className="mb-10">
+          <span className="text-xs tracking-[0.25em] uppercase text-[var(--primary)] font-bold block mb-2">
+            Kemampuan Teknis
+          </span>
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Keahlian & Stack</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {skills.map((group) => (
-            <div key={group.category} className="bg-white dark:bg-black p-6 md:p-8">
-              <h3 className="text-xs tracking-[0.3em] uppercase text-black/40 dark:text-white/40 mb-6 font-bold">
+            <SpotlightCard
+              key={group.category}
+              className="bg-[var(--card-bg)]/75 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-[var(--border-subtle)]"
+            >
+              <h3 className="text-xs tracking-[0.25em] uppercase text-[var(--primary)] mb-6 font-bold flex items-center gap-2">
+                <CheckCircle2 size={14} />
                 {group.category}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((skill) => (
                   <span
                     key={skill}
-                    className="border border-black/20 dark:border-white/20 px-3 py-1.5 text-sm font-semibold hover:bg-night-bordeaux-600 hover:text-white dark:hover:bg-dark-cyan-500 dark:hover:text-black hover:border-night-bordeaux-600 dark:hover:border-dark-cyan-500 transition-all duration-200 cursor-default"
+                    className="border border-[var(--border-subtle)] bg-[var(--background)]/60 px-3 py-1.5 text-xs font-semibold rounded-lg hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors cursor-default"
                   >
                     {skill}
                   </span>
                 ))}
               </div>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
       </section>
 
       {/* EXPERIENCE */}
-      <section className="py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-black/10 dark:border-white/10">
-        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight mb-14">Pengalaman</h2>
-        <div className="flex flex-col divide-y divide-black/10 dark:divide-white/10">
+      <section className="py-14 md:py-20 px-5 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-[var(--border-subtle)]">
+        <div className="mb-12">
+          <span className="text-xs tracking-[0.25em] uppercase text-[var(--primary)] font-bold block mb-2">
+            Perjalanan Karir
+          </span>
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Pengalaman</h2>
+        </div>
+
+        <div className="relative pl-6 sm:pl-8 border-l border-[var(--border-subtle)] space-y-10">
           {experiences.map((exp, i) => (
-            <div
-              key={i}
-              className="group py-8 grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors -mx-4 px-4"
-            >
-              <div>
-                <span className="text-xs tracking-widest uppercase text-black/40 dark:text-white/40 font-mono font-bold">
+            <div key={i} className="relative group">
+              {/* Timeline Marker */}
+              <span className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full border-2 border-[var(--background)] bg-[var(--primary)] ring-4 ring-[var(--primary)]/15 group-hover:scale-125 transition-transform" />
+
+              <div className="flex flex-wrap items-center gap-3 mb-2">
+                <span className="text-xs font-mono font-bold px-2.5 py-1 rounded bg-[var(--card-bg)] border border-[var(--border-subtle)] text-[var(--primary)] inline-flex items-center gap-1.5">
+                  <Calendar size={12} />
                   {exp.year}
                 </span>
-              </div>
-              <div>
-                <h3 className="text-lg font-black uppercase tracking-tight mb-1">{exp.role}</h3>
-                <p className="text-sm text-black/50 dark:text-white/50 tracking-widest uppercase mb-3 font-semibold">
+                <span className="text-xs text-[var(--foreground)]/50 uppercase tracking-widest font-semibold">
                   {exp.company}
-                </p>
-                <p className="text-sm text-black/60 dark:text-white/60 leading-relaxed font-medium">{exp.desc}</p>
+                </span>
               </div>
+
+              <h3 className="text-xl font-black uppercase tracking-tight mb-2 group-hover:text-[var(--primary)] transition-colors">
+                {exp.role}
+              </h3>
+              <p className="text-sm text-[var(--foreground)]/70 leading-relaxed font-medium max-w-2xl">
+                {exp.desc}
+              </p>
             </div>
           ))}
         </div>

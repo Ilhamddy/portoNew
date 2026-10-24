@@ -1,17 +1,18 @@
-import { Syne, DM_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Instrument_Serif } from "next/font/google";
 import AdminEditToolbar from "@/components/admin/AdminEditToolbar";
 import "./globals.css";
 
-const syne = Syne({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-syne",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-sans",
 });
 
-const dmSans = DM_Sans({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  variable: "--font-dm-sans",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
 });
 
 export const metadata = {
@@ -23,10 +24,26 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="id"
-      className={`${syne.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${instrumentSerif.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const saved = localStorage.getItem('theme');
+                if (saved === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
         {children}
         <AdminEditToolbar />
       </body>
