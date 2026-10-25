@@ -17,13 +17,13 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata = {
   title: "ilhamddy | Portfolio & IT Consultant",
-  description: "Website Portofolio ilhamddy - Frontend Developer & IT Consultant. Solusi web modern, cepat, responsif, dan berdampak.",
+  description: "Portfolio of ilhamddy - Frontend Developer & IT Consultant. Engineering modern, fast, responsive, and high-impact web solutions.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="id"
+      lang="en"
       className={`${plusJakartaSans.variable} ${instrumentSerif.variable} h-full antialiased`}
       suppressHydrationWarning
     >

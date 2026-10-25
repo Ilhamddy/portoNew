@@ -4,10 +4,20 @@ import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import InlineEdit from "@/components/admin/InlineEdit";
 import { usePortfolioStore } from "@/lib/portfolioStore";
+import { useLanguage } from "@/lib/useLanguage";
 
 export default function Footer() {
   const { config, updatePersonal } = usePortfolioStore();
-  const { personal, navLinks, services } = config;
+  const { personal, services } = config;
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.home, href: "/" },
+    { label: t.nav.about, href: "/about" },
+    { label: t.nav.services, href: "/services" },
+    { label: t.nav.portfolio, href: "/portfolio" },
+    { label: t.nav.contact, href: "/contact" },
+  ];
 
   return (
     <footer className="border-t border-[var(--border-subtle)] bg-[var(--card-bg)] text-[var(--foreground)] transition-colors duration-300">
@@ -34,18 +44,18 @@ export default function Footer() {
                 value={personal.role}
                 onSave={(value) => updatePersonal("role", value)}
               />{" "}
-              berbasis di{" "}
+              {t.common.basedIn}{" "}
               <InlineEdit
                 value={personal.location}
                 onSave={(value) => updatePersonal("location", value)}
               />
-              , fokus membangun produk digital berkinerja tinggi, elegan, dan berdampak nyata.
+              , {t.common.focusText}
             </p>
 
             <div className="mt-5 inline-flex items-center gap-2 border border-[var(--border-subtle)] bg-[var(--background)] px-3 py-1.5 rounded-full">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-[10px] tracking-wider uppercase font-bold text-[var(--foreground)]/70">
-                {personal.availability}
+                {personal.availability || t.common.openToWork}
               </span>
             </div>
           </div>
@@ -53,7 +63,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
             <div>
               <h4 className="text-[11px] tracking-[0.25em] uppercase text-[var(--primary)] font-bold mb-4">
-                Navigasi
+                {t.common.navigation}
               </h4>
               <nav className="flex flex-col gap-2.5">
                 {navLinks.map((link) => (
@@ -70,7 +80,7 @@ export default function Footer() {
 
             <div>
               <h4 className="text-[11px] tracking-[0.25em] uppercase text-[var(--primary)] font-bold mb-4">
-                Layanan
+                {t.common.servicesTitle}
               </h4>
               <div className="flex flex-col gap-2.5">
                 {services.slice(0, 4).map((service) => (
@@ -87,7 +97,7 @@ export default function Footer() {
 
             <div>
               <h4 className="text-[11px] tracking-[0.25em] uppercase text-[var(--primary)] font-bold mb-4">
-                Kontak
+                {t.common.contactTitle}
               </h4>
               <div className="flex flex-col gap-3">
                 <a
@@ -95,7 +105,7 @@ export default function Footer() {
                   className="inline-flex items-center gap-2 text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors font-medium"
                 >
                   <Mail size={14} className="text-[var(--primary)]" />
-                  Email
+                  {t.common.email}
                 </a>
                 <span className="inline-flex items-center gap-2 text-sm text-[var(--foreground)]/50 font-medium">
                   <MapPin size={14} />
@@ -106,7 +116,7 @@ export default function Footer() {
 
             <div>
               <h4 className="text-[11px] tracking-[0.25em] uppercase text-[var(--primary)] font-bold mb-4">
-                Sosial
+                {t.common.socialTitle}
               </h4>
               <div className="flex flex-col gap-2.5">
                 {personal.socials.map((social) => (
@@ -128,13 +138,13 @@ export default function Footer() {
 
         <div className="mt-12 pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <span className="text-xs text-[var(--foreground)]/45 tracking-widest uppercase font-medium" suppressHydrationWarning>
-            © {new Date().getFullYear()} {personal.name}. All rights reserved.
+            © {new Date().getFullYear()} {personal.name}. {t.common.allRights}
           </span>
           <Link
             href="/contact"
             className="text-xs tracking-widest uppercase font-bold text-[var(--primary)] hover:underline transition-colors flex items-center gap-1"
           >
-            Mulai Diskusi Proyek <ArrowUpRight size={13} />
+            {t.common.startProject} <ArrowUpRight size={13} />
           </Link>
         </div>
       </div>
