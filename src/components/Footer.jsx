@@ -16,6 +16,7 @@ export default function Footer() {
     { label: t.nav.about, href: "/about" },
     { label: t.nav.services, href: "/services" },
     { label: t.nav.portfolio, href: "/portfolio" },
+    { label: t.nav.apps || "Apps", href: "/apps" },
     { label: t.nav.contact, href: "/contact" },
   ];
 

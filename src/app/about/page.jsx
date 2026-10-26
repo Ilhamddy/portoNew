@@ -41,9 +41,9 @@ export default function AboutPage() {
         </FadeIn>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <h1 className="text-[clamp(2.6rem,13vw,7rem)] font-black uppercase tracking-tighter leading-[0.9]">
-            <SplitText text="WHO I" delay={0.05} />
+            <SplitText text={t.about.title1} delay={0.05} />
             <br />
-            <span className="text-stroke">AM</span>
+            <span className="text-stroke">{t.about.titleAccent}</span>
           </h1>
           <FadeIn delay={0.3} direction="right">
             <p className="max-w-xs text-[var(--foreground)]/60 text-sm leading-relaxed md:pb-3 font-medium">
