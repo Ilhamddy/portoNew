@@ -93,7 +93,7 @@ export default function AnimatedBackground() {
 
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? "rgba(238, 247, 242, 0.08)" : "rgba(12, 24, 17, 0.06)";
+        ctx.fillStyle = isDark ? "rgba(241, 245, 249, 0.08)" : "rgba(15, 23, 42, 0.06)";
         ctx.fill();
       });
 

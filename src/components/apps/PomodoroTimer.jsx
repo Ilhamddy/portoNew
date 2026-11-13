@@ -770,7 +770,7 @@ export default function PomodoroTimer() {
       {/* 1. TOP STATS BAR */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
         <div className="p-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--card-bg)]/80 backdrop-blur-md flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
             <CheckCircle2 size={20} />
           </div>
           <div>
@@ -782,7 +782,7 @@ export default function PomodoroTimer() {
         </div>
 
         <div className="p-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--card-bg)]/80 backdrop-blur-md flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
             <Clock size={20} />
           </div>
           <div>
@@ -818,15 +818,15 @@ export default function PomodoroTimer() {
         </div>
       </div>
 
-      {/* 2. MAIN TIMER CARD (Tiimo Nature Glassmorphism) */}
+      {/* 2. MAIN TIMER CARD (Clean Glassmorphism) */}
       <div className="relative rounded-3xl border border-[var(--border-subtle)] bg-[var(--card-bg)]/90 backdrop-blur-xl p-6 sm:p-10 shadow-[0_16px_50px_rgba(0,0,0,0.04)] mb-8 overflow-hidden">
         {/* Ambient Top Glow */}
         <div
           className={`absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 rounded-full blur-3xl pointer-events-none transition-all duration-700 ${
             mode === "focus"
-              ? "bg-emerald-500/15 dark:bg-emerald-400/20"
+              ? "bg-blue-500/15 dark:bg-blue-400/20"
               : mode === "shortBreak"
-              ? "bg-teal-500/15 dark:bg-teal-400/20"
+              ? "bg-cyan-500/15 dark:bg-cyan-400/20"
               : "bg-indigo-500/15 dark:bg-indigo-400/20"
           }`}
         />
@@ -867,7 +867,7 @@ export default function PomodoroTimer() {
               {[
                 { id: "off", icon: VolumeX, label: "Off" },
                 { id: "rain", icon: CloudRain, label: "Rain" },
-                { id: "forest", icon: Trees, label: "Forest" },
+                { id: "forest", icon: Sparkles, label: "Focus" },
                 { id: "whitenoise", icon: Wind, label: "White" },
               ].map(({ id, icon: Icon, label }) => (
                 <button
@@ -908,7 +908,7 @@ export default function PomodoroTimer() {
               }
               className={`p-2.5 rounded-full border transition-all cursor-pointer ${
                 isPipActive
-                  ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/50 shadow-xs scale-105"
+                  ? "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/50 shadow-xs scale-105"
                   : "border-[var(--border-subtle)] bg-[var(--background)]/80 text-[var(--foreground)]/75 hover:text-[var(--foreground)]"
               }`}
             >
@@ -928,16 +928,16 @@ export default function PomodoroTimer() {
 
         {/* PiP Active Banner Notice */}
         {isPipActive && (
-          <div className="relative z-10 mb-6 px-4 py-2.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-between gap-3 text-xs">
-            <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 font-semibold">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
+          <div className="relative z-10 mb-6 px-4 py-2.5 rounded-2xl bg-blue-500/10 border border-blue-500/25 flex items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2 text-blue-800 dark:text-blue-300 font-semibold">
+              <span className="w-2 h-2 rounded-full bg-blue-500 animate-ping shrink-0" />
               <span>
                 Picture-in-Picture aktif — Timer tetap mengambang di layar Anda saat membuka tab atau aplikasi lain.
               </span>
             </div>
             <button
               onClick={togglePictureInPicture}
-              className="underline hover:no-underline font-bold text-emerald-800 dark:text-emerald-200 cursor-pointer shrink-0"
+              className="underline hover:no-underline font-bold text-blue-800 dark:text-blue-200 cursor-pointer shrink-0"
             >
               Tutup PiP
             </button>
@@ -990,7 +990,7 @@ export default function PomodoroTimer() {
                     key={dot}
                     className={`h-2 rounded-full transition-all duration-300 ${
                       dot < cycleCount
-                        ? "w-4 bg-emerald-500"
+                        ? "w-4 bg-blue-500"
                         : dot === cycleCount
                         ? "w-6 bg-[var(--primary)] animate-pulse"
                         : "w-2 bg-[var(--border-subtle)]"
@@ -1008,7 +1008,7 @@ export default function PomodoroTimer() {
               <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--background)]/90 border border-[var(--border-subtle)] text-[11px] font-bold uppercase tracking-wider text-[var(--foreground)]/80">
                 <span
                   className={`w-1.5 h-1.5 rounded-full ${
-                    isRunning ? "bg-emerald-500 animate-ping" : "bg-amber-400"
+                    isRunning ? "bg-blue-500 animate-ping" : "bg-amber-400"
                   }`}
                 />
                 <span>
@@ -1089,7 +1089,7 @@ export default function PomodoroTimer() {
       <div className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--card-bg)]/80 backdrop-blur-md p-6 sm:p-8 mb-8">
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2.5">
-            <div className="w-2 h-2 rounded-full bg-emerald-500" />
+            <div className="w-2 h-2 rounded-full bg-blue-500" />
             <h3 className="text-base font-bold text-[var(--foreground)]">
               {pomodoroText.activeTaskLabel || "Fokus & Tugas Sesi Ini"}
             </h3>
@@ -1140,7 +1140,7 @@ export default function PomodoroTimer() {
                   className="flex items-center gap-3 text-left flex-1 cursor-pointer"
                 >
                   {task.completed ? (
-                    <CheckCircle2 size={18} className="text-emerald-500 shrink-0" />
+                    <CheckCircle2 size={18} className="text-blue-500 shrink-0" />
                   ) : (
                     <Circle size={18} className="text-[var(--foreground)]/40 shrink-0" />
                   )}
@@ -1247,7 +1247,7 @@ export default function PomodoroTimer() {
                     type="checkbox"
                     checked={autoStartBreaks}
                     onChange={(e) => setAutoStartBreaks(e.target.checked)}
-                    className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                    className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 cursor-pointer"
                   />
                 </div>
               </div>

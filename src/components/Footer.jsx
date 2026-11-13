@@ -1,7 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import {
+  ArrowUpRight,
+  Mail,
+  MapPin,
+  Sparkles,
+  Phone,
+  ShieldCheck,
+  Globe2,
+  Send,
+  Heart,
+} from "lucide-react";
 import InlineEdit from "@/components/admin/InlineEdit";
 import { usePortfolioStore } from "@/lib/portfolioStore";
 import { useLanguage } from "@/lib/useLanguage";
@@ -9,7 +19,7 @@ import { useLanguage } from "@/lib/useLanguage";
 export default function Footer() {
   const { config, updatePersonal } = usePortfolioStore();
   const { personal, services } = config;
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const navLinks = [
     { label: t.nav.home, href: "/" },
@@ -21,26 +31,37 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="border-t border-[var(--border-subtle)] bg-[var(--card-bg)] text-[var(--foreground)] transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-[1.3fr_2fr] gap-10 md:gap-14">
-          <div>
-            <Link href="/" className="inline-flex items-center gap-3 mb-4 group">
-              <span className="text-2xl font-black tracking-tighter uppercase leading-none group-hover:text-[var(--primary)] transition-colors">
+    <footer className="relative border-t border-[var(--border-subtle)] bg-[var(--card-solid)] text-[var(--foreground)] transition-colors duration-300 overflow-hidden">
+      {/* Subtle background ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-36 bg-blue-500/5 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Main Footer Container */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-16 pb-12">
+        {/* Top Segment: Brand & Value proposition */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2fr] gap-12 lg:gap-16 pb-14 border-b border-[var(--border-subtle)]">
+          {/* Left Column: Brand & Bio */}
+          <div className="flex flex-col items-start">
+            <Link href="/" className="inline-flex items-center gap-3 mb-5 group">
+              <span className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black flex items-center justify-center text-sm shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
                 <InlineEdit
                   value={personal.initials}
                   onSave={(value) => updatePersonal("initials", value)}
                 />
               </span>
-              <span className="w-px h-5 bg-[var(--border-subtle)]" />
-              <span className="text-xs tracking-[0.25em] uppercase text-[var(--foreground)]/60 font-bold group-hover:text-[var(--foreground)] transition-colors">
-                <InlineEdit
-                  value={personal.name}
-                  onSave={(value) => updatePersonal("name", value)}
-                />
-              </span>
+              <div className="flex flex-col">
+                <span className="text-base font-extrabold tracking-tight uppercase leading-none group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <InlineEdit
+                    value={personal.name}
+                    onSave={(value) => updatePersonal("name", value)}
+                  />
+                </span>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-[var(--foreground)]/50 font-semibold mt-1">
+                  Portfolio Studio
+                </span>
+              </div>
             </Link>
-            <p className="text-sm text-[var(--foreground)]/65 leading-relaxed max-w-sm font-medium">
+
+            <p className="text-sm text-[var(--foreground)]/70 leading-relaxed max-w-sm font-normal mb-6">
               <InlineEdit
                 value={personal.role}
                 onSave={(value) => updatePersonal("role", value)}
@@ -50,20 +71,24 @@ export default function Footer() {
                 value={personal.location}
                 onSave={(value) => updatePersonal("location", value)}
               />
-              , {t.common.focusText}
+              . {t.common.focusText}
             </p>
 
-            <div className="mt-5 inline-flex items-center gap-2 border border-[var(--border-subtle)] bg-[var(--background)] px-3 py-1.5 rounded-full">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] tracking-wider uppercase font-bold text-[var(--foreground)]/70">
-                {personal.availability || t.common.openToWork}
+            {/* Availability Status Badge */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--background)] text-xs font-semibold text-[var(--foreground)]/80 shadow-xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
+              <span>{personal.availability || t.common.openToWork}</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+          {/* Right Navigation & Quick Links Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-10">
+            {/* Quick Navigation */}
             <div>
-              <h4 className="text-[11px] tracking-[0.25em] uppercase text-[var(--primary)] font-bold mb-4">
+              <h4 className="text-[11px] tracking-[0.22em] uppercase text-blue-600 dark:text-blue-400 font-bold mb-4">
                 {t.common.navigation}
               </h4>
               <nav className="flex flex-col gap-2.5">
@@ -71,7 +96,7 @@ export default function Footer() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors font-medium"
+                    className="text-xs sm:text-sm text-[var(--foreground)]/70 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium hover:translate-x-1 duration-200 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -79,8 +104,9 @@ export default function Footer() {
               </nav>
             </div>
 
+            {/* Services Offered */}
             <div>
-              <h4 className="text-[11px] tracking-[0.25em] uppercase text-[var(--primary)] font-bold mb-4">
+              <h4 className="text-[11px] tracking-[0.22em] uppercase text-blue-600 dark:text-blue-400 font-bold mb-4">
                 {t.common.servicesTitle}
               </h4>
               <div className="flex flex-col gap-2.5">
@@ -88,7 +114,7 @@ export default function Footer() {
                   <Link
                     key={service.no}
                     href="/services"
-                    className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors font-medium line-clamp-1"
+                    className="text-xs sm:text-sm text-[var(--foreground)]/70 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium line-clamp-1 hover:translate-x-1 duration-200"
                   >
                     {service.title}
                   </Link>
@@ -96,40 +122,36 @@ export default function Footer() {
               </div>
             </div>
 
-            <div>
-              <h4 className="text-[11px] tracking-[0.25em] uppercase text-[var(--primary)] font-bold mb-4">
+            {/* Direct Channels & Socials */}
+            <div className="col-span-2 sm:col-span-1">
+              <h4 className="text-[11px] tracking-[0.22em] uppercase text-blue-600 dark:text-blue-400 font-bold mb-4">
                 {t.common.contactTitle}
               </h4>
               <div className="flex flex-col gap-3">
                 <a
                   href={`mailto:${personal.email}`}
-                  className="inline-flex items-center gap-2 text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors font-medium"
+                  className="group inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--foreground)]/75 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                 >
-                  <Mail size={14} className="text-[var(--primary)]" />
-                  {t.common.email}
+                  <Mail size={14} className="text-blue-600 dark:text-blue-400 shrink-0" />
+                  <span className="truncate">{personal.email}</span>
                 </a>
-                <span className="inline-flex items-center gap-2 text-sm text-[var(--foreground)]/50 font-medium">
-                  <MapPin size={14} />
-                  {personal.location}
+                <span className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--foreground)]/60 font-medium">
+                  <MapPin size={14} className="shrink-0" />
+                  <span>{personal.location}</span>
                 </span>
               </div>
-            </div>
 
-            <div>
-              <h4 className="text-[11px] tracking-[0.25em] uppercase text-[var(--primary)] font-bold mb-4">
-                {t.common.socialTitle}
-              </h4>
-              <div className="flex flex-col gap-2.5">
+              <div className="mt-5 pt-4 border-t border-[var(--border-subtle)] flex flex-wrap gap-2">
                 {personal.socials.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-1.5 text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors font-medium"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold border border-[var(--border-subtle)] bg-[var(--background)] hover:border-blue-500/40 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
                   >
-                    {social.label}
-                    <ArrowUpRight size={12} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <span>{social.label}</span>
+                    <ArrowUpRight size={10} className="opacity-60" />
                   </a>
                 ))}
               </div>
@@ -137,16 +159,23 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <span className="text-xs text-[var(--foreground)]/45 tracking-widest uppercase font-medium" suppressHydrationWarning>
-            © {new Date().getFullYear()} {personal.name}. {t.common.allRights}
-          </span>
-          <Link
-            href="/contact"
-            className="text-xs tracking-widest uppercase font-bold text-[var(--primary)] hover:underline transition-colors flex items-center gap-1"
-          >
-            {t.common.startProject} <ArrowUpRight size={13} />
-          </Link>
+        {/* Bottom Bar: Copyright & Attribution */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--foreground)]/50">
+          <div className="flex items-center gap-2" suppressHydrationWarning>
+            <span>© {new Date().getFullYear()} {personal.name}.</span>
+            <span>·</span>
+            <span>{t.common.allRights}</span>
+          </div>
+
+          <div className="flex items-center gap-5">
+            <Link
+              href="/contact"
+              className="font-semibold text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+            >
+              <span>{t.common.startProject}</span>
+              <ArrowUpRight size={12} />
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

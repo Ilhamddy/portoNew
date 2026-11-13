@@ -136,7 +136,7 @@ export const portfolioConfig = {
       desc: "Dashboard analitik real-time untuk monitoring performa bisnis dengan visualisasi data interaktif.",
       tech: ["Next.js", "Tailwind", "Recharts", "TypeScript"],
       image: "/projects/dashboard-analytics.png",
-      color: "bg-night-bordeaux-800 text-night-bordeaux-50 dark:bg-dark-cyan-900 dark:text-dark-cyan-100",
+      color: "bg-slate-900 text-white dark:bg-slate-800 dark:text-slate-100",
       size: "large",
     },
     {
@@ -148,7 +148,7 @@ export const portfolioConfig = {
       desc: "Landing page premium yang mencerminkan identitas brand dengan animasi yang halus dan konversi tinggi.",
       tech: ["React", "Framer Motion", "Tailwind"],
       image: "/projects/porto.png",
-      color: "bg-night-bordeaux-100 border border-night-bordeaux-300 text-night-bordeaux-950 dark:bg-dark-cyan-800 dark:border-dark-cyan-600 dark:text-dark-cyan-50",
+      color: "bg-slate-100 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100",
       size: "normal",
     },
     {
@@ -160,7 +160,7 @@ export const portfolioConfig = {
       desc: "Perencanaan dan implementasi infrastruktur IT untuk perusahaan dengan 200+ karyawan.",
       tech: ["Network Architecture", "Cloud Setup", "Security"],
       image: "/projects/jaringan.png",
-      color: "bg-night-bordeaux-200 border border-night-bordeaux-400 text-night-bordeaux-950 dark:bg-dark-cyan-700 dark:border-dark-cyan-500 dark:text-dark-cyan-50",
+      color: "bg-slate-100 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100",
       size: "normal",
     },
     {
@@ -172,7 +172,7 @@ export const portfolioConfig = {
       desc: "Platform e-commerce lengkap dengan sistem manajemen produk, pembayaran, dan dashboard admin.",
       tech: ["Next.js", "Stripe", "Prisma", "PostgreSQL"],
       image: "/projects/online-store-platform.jpg",
-      color: "bg-night-bordeaux-700 text-night-bordeaux-50 dark:bg-dark-cyan-950 dark:text-dark-cyan-100",
+      color: "bg-slate-900 text-white dark:bg-slate-800 dark:text-slate-100",
       size: "large",
     },
     {
@@ -184,7 +184,7 @@ export const portfolioConfig = {
       desc: "Alur onboarding multi-step yang meningkatkan user activation rate hingga 40%.",
       tech: ["React", "Tailwind", "Zustand"],
       image: "/projects/saas-onboarding-flow.jpg",
-      color: "bg-night-bordeaux-50 border border-night-bordeaux-300 text-night-bordeaux-900 dark:bg-dark-cyan-900 dark:border-dark-cyan-700 dark:text-dark-cyan-100",
+      color: "bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100",
       size: "normal",
     },
     {
@@ -196,7 +196,7 @@ export const portfolioConfig = {
       desc: "Redesain total website perusahaan dengan pendekatan modern dan profesional.",
       tech: ["Next.js", "Sanity CMS", "Tailwind"],
       image: "/projects/company-profile.png",
-      color: "bg-night-bordeaux-300 border border-night-bordeaux-500 text-night-bordeaux-950 dark:bg-dark-cyan-800 dark:border-dark-cyan-500 dark:text-dark-cyan-50",
+      color: "bg-slate-100 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100",
       size: "normal",
     },
   ],

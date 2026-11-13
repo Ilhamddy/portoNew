@@ -90,7 +90,7 @@ export default function AppsPage() {
             >
               <LayoutGrid size={16} />
               <span>{appsContent.tabs?.upcoming || "Aplikasi Lainnya"}</span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-black">
+              <span className="px-2 py-0.5 rounded-full text-[10px] bg-blue-500/15 text-blue-600 dark:text-blue-400 font-black">
                 {upcomingApps.length}
               </span>
             </button>

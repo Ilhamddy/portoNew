@@ -5,8 +5,8 @@ import React, { useRef, useState } from "react";
 export default function SpotlightCard({
   children,
   className = "",
-  spotlightColor = "rgba(176, 28, 52, 0.09)",
-  darkSpotlightColor = "rgba(78, 179, 188, 0.15)",
+  spotlightColor = "rgba(37, 99, 235, 0.08)",
+  darkSpotlightColor = "rgba(59, 130, 246, 0.14)",
 }) {
   const divRef = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
