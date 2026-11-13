@@ -149,7 +149,7 @@ export default function Navbar() {
       {/* ============================================================ */}
       <header className="fixed top-4 sm:top-6 left-0 right-0 z-50 hidden md:flex justify-center px-4 pointer-events-none">
         <div className="pointer-events-auto w-full max-w-fit rounded-full transition-all duration-300 shadow-[0_12px_40px_rgba(0,0,0,0.12)] border p-1.5 sm:p-2 bg-white text-black border-black/10 dark:bg-[#121316] dark:text-white dark:border-white/10 dark:shadow-[0_16px_45px_rgba(0,0,0,0.6)] backdrop-blur-xl flex items-center justify-between gap-4 lg:gap-6">
-          
+
           {/* Left: Circle Logo Button */}
           <Link
             href="/"
@@ -180,11 +180,10 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm tracking-normal font-medium transition-colors py-1 ${
-                    isActive
-                      ? "text-black dark:text-white font-bold"
-                      : "text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white"
-                  }`}
+                  className={`text-sm tracking-normal font-medium transition-colors py-1 ${isActive
+                    ? "text-black dark:text-white font-bold"
+                    : "text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white"
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -235,9 +234,9 @@ export default function Navbar() {
               style={
                 !darkMode
                   ? {
-                      background:
-                        "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.22), transparent 75%), #111113",
-                    }
+                    background:
+                      "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.22), transparent 75%), #111113",
+                  }
                   : undefined
               }
             >

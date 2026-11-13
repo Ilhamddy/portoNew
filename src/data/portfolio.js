@@ -24,7 +24,7 @@ export const portfolioConfig = {
       { label: "Instagram", href: "https://instagram.com/ilhamddy", desc: "Galeri aktivitas" },
     ]
   },
-  
+
   navLinks: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
